@@ -2,6 +2,6 @@
   <%=f.autocomplete_field :keyword, pages_autocomplete_disease_disease_name_path,
                           :class => "text round disease-search", 
                           :value => "Enter an OMIM #, disease name or initial",
-                          :onclick => "" %> 
+                          :onclick => "$('#_keyword').get(0).value=''" %> 
   <%= f.submit "Go!", :class => "go-button" %>
 <% end %>

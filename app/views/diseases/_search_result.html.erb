@@ -1,0 +1,32 @@
+<%= will_paginate @diseases, :class => 'flickr_pagination' %>
+<br />
+<table class="result">
+	<thead>
+		<tr>
+			<th>OMIM ID</th>
+			<th>Disease Name</th>
+			<th>OMIM Entry</th>
+			<th>Prediction</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @diseases.each do |disease| %>
+			<tr>
+				<td><%= disease.omim_id %></td>
+				<td><%= disease.disease_name %></td>
+				<td>
+					<%= link_to "OMIM Entry", omim_link(disease.omim_id), :target => "_blank" %>
+				</td>
+				<td>
+					<%= link_to "Start Prediction", { :controller => "prediction", 
+													:action => "parameter", 
+													:omim_id => disease.omim_id } %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<br />
+<%= will_paginate @diseases, :class => 'flickr_pagination' %>
+<br />
+<%= link_to "Start a new search", root_path %>
