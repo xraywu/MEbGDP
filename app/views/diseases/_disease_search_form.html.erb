@@ -1,0 +1,7 @@
+<%= form_for @keyword, :url => url_for(:controller => 'diseases', :action => 'search'), :method => 'get' do |f| %>  
+  <%=f.autocomplete_field :keyword, pages_autocomplete_disease_disease_name_path,
+                          :class => "text round disease-search", 
+                          :value => "Enter an OMIM #, disease name or initial",
+                          :onclick => "" %> 
+  <%= f.submit "Go!", :class => "go-button" %>
+<% end %>
