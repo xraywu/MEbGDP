@@ -1,0 +1,166 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+/* Layouts */
+body{
+
+}
+
+header {
+	height: 30px;
+}
+
+header .menu{
+	height: 30px;
+	border-bottom: #6299C5 2px solid;
+
+}
+
+header ul{
+	font-size: 15px;
+	line-height: 30px;
+}
+
+header ul li{
+	font-family: 'Lucida Sans', 'Lucida Grande', Arial, Helvetica, Verdana, Geneva, sans-serif;
+	display: inline;
+	padding-right: 20px;
+	padding-left: 20px;
+	border-right: black 1px solid;
+}
+
+
+section {
+	width: auto;
+	min-height: 600px;
+	height: auto;
+}
+
+.major {
+	padding-top: 30px;
+}
+
+.vmiddle-major{
+	padding-top: 120px;
+}
+
+.image-link {
+	width: 500px;
+	margin: auto;
+}
+
+.image-link tr td{
+	text-align: center;
+}
+
+footer{
+	
+}
+
+footer .copyright{
+	margin-top: 30px;
+	padding-top: 20px;
+	border-top: #6299C5 2px solid;
+	height: 100px;
+}
+
+
+.round{
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px;
+}
+
+/* Search button generated from http://www.cssbuttongenerator.com/ */
+
+.go-button {
+	-moz-box-shadow:inset 0px 0px 0px 0px #cae3fc;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #cae3fc;
+	box-shadow:inset 0px 0px 0px 0px #cae3fc;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #4197ee) );
+	background:-moz-linear-gradient( center top, #79bbff 5%, #4197ee 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#4197ee');
+	background-color:#79bbff;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	border:1px solid #469df5;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:18px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:2px 0px 0px #287ace;
+}.go-button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #4197ee), color-stop(1, #79bbff) );
+	background:-moz-linear-gradient( center top, #4197ee 5%, #79bbff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#4197ee', endColorstr='#79bbff');
+	background-color:#4197ee;
+}.go-button:active {
+	position:relative;
+	top:1px;
+}
+
+/* Search Table */
+.result {
+	width: 1000px;
+	margin: auto;
+}
+
+.result td{
+	text-align: center;
+}
+
+.result th{
+	text-align: center;
+}
+
+/* Field Table */
+.field-table {
+	width: 450px;
+	margin: auto;
+}
+
+.field-table col:first-child {
+	width: 40%;
+	text-align: left;
+}
+
+.field-table td.label {
+	text-align: center;
+	background: #c3d9ff;
+	border-right: 2px white solid;
+	border-bottom: 2px white solid;
+	padding: auto;
+}
+
+
+.field-table td.input {
+	text-align: center;
+	background: #e5ecf9;
+	border-bottom: 2px white solid;
+}
+
+.field-table td.submit {
+	text-align: center;
+	padding-top: 20px;
+	background: white;
+	border: none;
+}
+
+.field-infobutton{
+	vertical-align: bottom;
+}

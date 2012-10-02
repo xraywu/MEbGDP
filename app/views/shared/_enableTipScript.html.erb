@@ -1,0 +1,13 @@
+<script>
+$('[data-url]').each(function(i) {
+    var element = $(this); 
+    element.qtip({
+        content: {
+            text: 'Loading...',
+            ajax: {
+                url: element.data('url')
+            }
+        }
+    });
+});
+</script>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  omim_id: 
+  disease_name: MyString
+
+two:
+  omim_id: 
+  disease_name: MyString
