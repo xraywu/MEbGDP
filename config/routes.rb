@@ -6,8 +6,8 @@ MEbGDP::Application.routes.draw do
   get "tips/eta"
   get "tips/net_selection"
 
-  get "prediction/parameter"
-  get "prediction/predict"
+  get "predictions/parameter"
+  get "predictions/predict"
 
   get "diseases/search"
 

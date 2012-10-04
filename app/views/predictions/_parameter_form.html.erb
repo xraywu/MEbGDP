@@ -1,0 +1,69 @@
+<%= form_for @prediction, :url => { :action => "predict" }, :method => "get" do |f| %>
+  
+  <%= render 'shared/error_messages'%>
+  
+  <%=f.text_field :omim_id, :value => @disease.omim_id, :type => "hidden" %>
+  <table class="field-table">
+	<col /><col /><col />
+	<tr>
+  		<td class="label"><%= f.label :top_results, "Show Top Result # " %></td>
+  		<td class="input" colspan="2"><%= f.text_field :top_results, :value => "100" %></td>
+  	</tr>
+  	
+  	<tr>
+  		<td class="label">
+  			<%= f.label :gamma, "Restart Probability (γ) " %> 
+  			<%= image_tag("infoButton.png", :size => "24x24", :class => "field-infobutton", :data => { :url => tips_gamma_path }) %>
+		</td>
+  		<td class="input" colspan="2"><%= f.text_field :gamma, :value => "0.7" %></td>
+  	</tr>
+  	
+  	<tr>
+  		<td class="label">
+  			<%= f.label :lambda, "Jumping Probability (λ) " %> 
+  			<%= image_tag("infoButton.png", :size => "24x24", :class => "field-infobutton", :data => { :url => tips_lambda_path }) %>
+  		</td>
+  		<td class="input" colspan="2"><%= f.text_field :lambda, :value=> "0.5" %></td>
+  	</tr>
+  	
+  	<tr>
+  		<td class="label">
+  			<%= f.label :eta, "Sub-network weight (η) " %>
+  			<%= image_tag("infoButton.png", :size => "24x24", :class => "field-infobutton", :data => { :url => tips_eta_path }) %>
+  		</td>
+  		<td class="input" colspan="2"><%= f.text_field :eta, :value => "0.5" %></td>
+  	</tr>
+  	
+  	<tr>
+  		<td class="label" rowspan="4">
+  			<%= f.label :network, "Network Selection " %><br />
+  			<%= image_tag("infoButton.png", :size => "24x24", :class => "field-infobutton", :data => { :url => tips_net_selection_path }) %>
+  		</td>
+  		
+		<td class="label"><%= label_tag "semantic_prior", "Semantic Prior " %></td>
+  		<td class="input"><%= f.check_box "network", {:multiple => true, :checked => true}, "seman_prior", nil %></td>
+  	</tr>
+  	
+  	<tr>
+  		<td class="label"><%= label_tag "semantic_nprior", "Semantic Non-Prior " %></td>
+		<td class="input"><%= f.check_box "network", {:multiple => true, :checked => true}, "seman_nprior", nil %></td>
+  	</tr>
+  	<tr>
+  		<td class="label"><%= label_tag "ppi_prior", "PPI Prior " %></td>
+		<td class="input"><%= f.check_box "network", {:multiple => true, :checked => true}, "ppi_prior", nil %></td>
+  	</tr>
+  	<tr>
+  		<td class="label"><%= label_tag "ppi_nprior", "PPI Non-Prior " %></td>
+  		<td class="input"><%= f.check_box "network", {:multiple => true, :checked => true}, "ppi_nprior", nil %></td>
+  	</tr>
+  	
+  	<tr>
+  		<td class="submit" colspan="3">
+  			<%= f.submit "Reset",  :type => "reset", :class => "go-button" %>
+  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<%= f.submit "Start!", :class => "go-button"%>
+  		</td>
+  	</tr>
+
+  </table>
+<% end %>

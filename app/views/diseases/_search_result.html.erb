@@ -18,7 +18,7 @@
 					<%= link_to "OMIM Entry", omim_link(disease.omim_id), :target => "_blank" %>
 				</td>
 				<td>
-					<%= link_to "Start Prediction", { :controller => "prediction", 
+					<%= link_to "Start Prediction", { :controller => "predictions", 
 													:action => "parameter", 
 													:omim_id => disease.omim_id } %>
 				</td>
