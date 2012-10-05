@@ -10,7 +10,7 @@ class Prediction
   validates :lambda, :presence => true, :numericality => { :greater_than => 0, :less_than => 1 }
   validates :eta, :presence => true, :numericality => { :greater_than => 0, :less_than => 1 }
   validates :gamma, :presence => true, :numericality => { :greater_than => 0, :less_than => 1 }
-  validates :network, :presence => { :message => "to be used should be selected!" }
+  validates :network, :presence => { :message => "should be selected!" }
   
   
   def initialize(attributes = {})

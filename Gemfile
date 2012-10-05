@@ -8,7 +8,7 @@ gem 'rails', '3.2.8'
 gem 'will_paginate'
 gem 'mysql2'
 gem 'rails3-jquery-autocomplete'
-gem 'sexy_validations'
+gem 'client_side_validations'
 
 # Gems used only for assets and not required
 # in production environments by default.

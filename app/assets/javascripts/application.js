@@ -16,3 +16,4 @@
 //=require jquery.qtip
 //=require autocomplete-rails
 //=require rails
+//= require rails.validations
