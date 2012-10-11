@@ -4,6 +4,7 @@ class PredictionsController < ApplicationController
   def parameter
     @disease = Disease.find_by_omim_id(params[:omim_id])
     @prediction = Prediction.new
+    @title = "Prediction Panel"
   end
 
   def predict
