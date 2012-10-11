@@ -1,4 +1,7 @@
-<h1>Loading</h1>
-
 <%= @task_id %><br />
 <%= params[:prediction][:omim_id]%>
+
+<div class="loading-panel vmiddle-major">
+<%= image_tag("loading.gif", :class => "loading") %>
+<%= image_tag("loading-hint.gif", :class => "loading") %>
+</div>

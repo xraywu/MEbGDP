@@ -9,9 +9,11 @@ class PredictionsController < ApplicationController
   def predict
     @parameter = Prediction.new(params[:prediction])
     if @parameter.valid?
-       timestamp = Time.new.to_time.to_i
-       job = RwrhJob.new(params[:prediction][:omim_id],params[:prediction][:top_results],params[:prediction][:lambda],params[:prediction][:gamma],params[:prediction][:eta],params[:prediction][:network],timestamp)
-       job.perform
+       @task_id = Time.new.to_time.to_i
+       Delayed::Job.enqueue RwrhJob.new(params[:prediction][:omim_id],
+                                        params[:prediction][:top_results],params[:prediction][:lambda],
+                                        params[:prediction][:gamma],params[:prediction][:eta],
+                                        params[:prediction][:network], @task_id)
     else
       @disease = Disease.find_by_omim_id(params[:prediction][:omim_id])
       render :action => 'parameter'
