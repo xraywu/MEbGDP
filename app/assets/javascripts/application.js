@@ -14,6 +14,7 @@
 //=require jquery
 //=require jquery-ui
 //=require jquery.qtip
-//=require autocomplete-rails
 //=require rails
+//=require autocomplete-rails
 //= require rails.validations
+//= require jquery.colorbox

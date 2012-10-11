@@ -6,6 +6,14 @@
   <table class="field-table">
 	<col /><col /><col />
 	<tr>
+		<td class="head-label" colspan="3">
+			<%= "OMIM Entry: ##{@disease.omim_id}" %>
+			<br />
+			<%= "#{@disease.disease_name}" %>
+		</td>
+	</tr>
+	
+	<tr>
   		<td class="label"><%= f.label :top_results, "Show Top Result # " %></td>
   		<td class="input" colspan="2"><%= f.text_field :top_results, :value => "100" %></td>
   	</tr>

@@ -1,5 +1,5 @@
 class TipsController < ApplicationController
-    def rwrh 
+   def rwrh 
     render :layout => "noLayout"
   end
   
