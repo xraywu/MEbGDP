@@ -210,3 +210,17 @@ border-radius: 10px;
  list-style: square;
  text-align: left;
 }
+
+
+/* Loading Image */
+.loading-panel{
+	width: 250px;
+	height: 100px;
+	margin:auto;
+}
+
+.loading{
+	padding: 10px;
+	display: block;
+	margin: auto;
+} 
