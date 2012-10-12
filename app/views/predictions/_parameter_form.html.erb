@@ -15,7 +15,7 @@
 	
 	<tr>
   		<td class="label"><%= f.label :top_results, "Show Top Result # " %></td>
-  		<td class="input" colspan="2"><%= f.text_field :top_results, :value => "100" %></td>
+  		<td class="input" colspan="2"><%= f.text_field :top_results, :value => "100", :onclick => enableValidator %></td>
   	</tr>
   	
   	<tr>
@@ -23,7 +23,7 @@
   			<%= f.label :gamma, "Restart Probability (γ) " %> 
   			<%= image_tag("infoButton.png", :size => "24x24", :class => "field-infobutton", :data => { :url => tips_gamma_path }) %>
 		</td>
-  		<td class="input" colspan="2"><%= f.text_field :gamma, :value => "0.7" %></td>
+  		<td class="input" colspan="2"><%= f.text_field :gamma, :value => "0.7", :onclick => enableValidator %></td>
   	</tr>
   	
   	<tr>
@@ -31,7 +31,7 @@
   			<%= f.label :lambda, "Jumping Probability (λ) " %> 
   			<%= image_tag("infoButton.png", :size => "24x24", :class => "field-infobutton", :data => { :url => tips_lambda_path }) %>
   		</td>
-  		<td class="input" colspan="2"><%= f.text_field :lambda, :value=> "0.5" %></td>
+  		<td class="input" colspan="2"><%= f.text_field :lambda, :value=> "0.5", :onclick => enableValidator %></td>
   	</tr>
   	
   	<tr>
@@ -39,7 +39,7 @@
   			<%= f.label :eta, "Sub-network weight (η) " %>
   			<%= image_tag("infoButton.png", :size => "24x24", :class => "field-infobutton", :data => { :url => tips_eta_path }) %>
   		</td>
-  		<td class="input" colspan="2"><%= f.text_field :eta, :value => "0.5" %></td>
+  		<td class="input" colspan="2"><%= f.text_field :eta, :value => "0.5", :onclick => enableValidator %></td>
   	</tr>
   	
   	<tr>
@@ -67,7 +67,7 @@
   	
   	<tr>
   		<td class="submit" colspan="3">
-  			<%= f.submit "Reset",  :type => "reset", :class => "go-button", :onclick => resetValidator %>
+  			<%= f.submit "Reset",  :type => "reset", :class => "go-button", :onclick => resetValidator,  :id => 'reset' %>
   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   			<%= f.submit "Start!", :class => "go-button"%>
   		</td>
@@ -75,3 +75,4 @@
 
   </table>
 <% end %>
+
