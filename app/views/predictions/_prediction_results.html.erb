@@ -1,0 +1,51 @@
+<% 
+max_result_num = 0
+failed_prediction_messages = []
+@results.each do |resultHash|
+	resultHash.each do |network, resultArray|
+		if resultArray.empty?
+			failed_prediction_messages.push("Failed to predict phenotype-genotype relationship on #{network}")
+		else
+			result_num = resultArray.length
+			if result_num > max_result_num
+				max_result_num = result_num
+			end
+		end
+	end
+end
+%>
+
+<% unless failed_prediction_messages.empty? %>
+  <div class="failed_prediction_message">
+  	<ul>
+    <% failed_prediction_messages.each do |message| %>
+    	<li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<table class="prediction-rank-table">
+	<thead><tr><th>Rank</th></tr></thead>
+	<tbody>
+	<% for row_num in 1..max_result_num %>
+	  <tr><td><%= row_num %></td></tr>
+	<% end %>
+	</tbody>
+</table>
+
+<% @results.each do |resultHash| %>
+
+  <% resultHash.each do |network, resultArray| %>
+  	<% unless resultArray.empty?%>
+  	<table class="prediction-result-table">
+	<thead><tr><th><%= network %></th></tr></thead>
+	<tbody>
+	<% resultArray.each do |result| %>
+	  <tr><td><%= result %></td></tr>
+	<% end %>
+	</tbody>
+	<% end %>
+	</table>
+  <% end %>
+<% end %>

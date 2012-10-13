@@ -191,7 +191,7 @@ border-radius: 10px;
 #error_explanation {
  width: 400px;
  border: 2px solid red;
- padding: 7px;
+ padding: 5px;
  margin-bottom: 20px;
  margin-left: auto;
  margin-right: auto;
@@ -230,10 +230,85 @@ border-radius: 10px;
 	width: 250px;
 	height: 100px;
 	margin:auto;
+	padding: 200px;
 }
 
 .loading{
 	padding: 10px;
 	display: block;
 	margin: auto;
-} 
+}
+
+/* Prediction Result */
+
+#prediction-results{
+	padding: 10px;
+	margin: auto;
+}
+
+.prediction-result-table{
+	width: 150px;
+	display: inline-block;
+	vertical-align: bottom;
+	margin: 0;
+}
+
+.prediction-result-table thead{
+	width: 150px;
+}
+
+.prediction-result-table th{
+	text-align: center;
+	vertical-align: middle;
+	width: 150px;
+	height: 40px;
+}
+
+.prediction-result-table td{
+	text-align: center;
+	width: 150px;
+}
+
+.prediction-rank-table{
+	width: 80px;
+	display: inline-block;
+	vertical-align: top;
+	margin: 0;
+}
+
+.prediction-rank-table thead{
+	width: 80px;
+}
+
+.prediction-rank-table th{
+	text-align: center;
+	vertical-align: middle;
+	width: 80px;
+	height: 40px;
+}
+
+.prediction-rank-table td{
+	text-align: center;
+	width: 80px;
+}
+
+.failed_prediction_message {
+	width: 500px;
+	border: 2px solid red;
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #e5ecf9;
+	padding-left: 5px
+}
+
+.failed_prediction_message ul{
+	margin-top: 20px;
+}
+
+.failed_prediction_message ul li{
+	font-size: 12px;
+	list-style: square;
+	text-align: left;
+	font-weight: bold;
+}

@@ -26,11 +26,46 @@ class PredictionsController < ApplicationController
     task_id = params[:task_id]
     task_folder = Rails.root.join('task_temp',task_id)
     if File.exists?("#{task_folder}\\finish")
-      #To make real results!
-      @results = Dir.entries(task_folder)
-    else
-      @reulsts = []
+      File.delete("#{task_folder}\\finish")
+      @results = loadAllResultFiles(task_folder)
     end
+  end
+  
+  private
+  
+  def loadAllResultFiles(task_folder)
+    results = []
+    
+    if File.exists?("#{task_folder}\\seman_prior.txt")
+      resultArray = loadResultFile(task_folder,"seman_prior.txt")
+        results.push Hash["Semantic Prior Network",resultArray]
+    end
+    
+    if File.exists?("#{task_folder}\\seman_nprior.txt")
+      resultArray = loadResultFile(task_folder,"seman_nprior.txt")
+        results.push Hash["Semantic Non-Prior Network",resultArray]
+    end
+    
+    if File.exists?("#{task_folder}\\ppi_prior.txt")
+      resultArray = loadResultFile(task_folder,"ppi_prior.txt")
+        results.push Hash["PPI Prior Network",resultArray]
+    end
+        
+    if File.exists?("#{task_folder}\\ppi_nprior.txt")
+      resultArray = loadResultFile(task_folder,"ppi_nprior.txt")
+        results.push Hash["PPI Non-Prior Network",resultArray]
+    end
+        
+    return results
+  end
+  
+  def loadResultFile(task_folder, file_name)
+    resultArray = []
+    f = File.open("#{task_folder}\\#{file_name}") or die "Unable to open file..."
+    f.each_line {|line|
+       resultArray.push line
+    }
+    resultArray
   end
 
 end

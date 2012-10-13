@@ -1,5 +1,6 @@
-<% unless @results.empty? %>
+<% unless @results.nil? %>
 $("#loading").remove();
 $("#prediction-results").attr( "data-result", "true" )
-$("#prediction-results").append("<%= @results %>");
+$("#prediction-results").append("<h2>Prediction Results</h2>");
+$("#prediction-results").append("<%=raw escape_javascript(render 'prediction_results', :collection => @results) %>");
 <% end %>
