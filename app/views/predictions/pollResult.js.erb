@@ -1,0 +1,5 @@
+<% unless @results.empty? %>
+$("#loading").remove();
+$("#prediction-results").attr( "data-result", "true" )
+$("#prediction-results").append("<%= @results %>");
+<% end %>

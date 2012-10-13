@@ -1,7 +1,8 @@
-<%= @task_id %><br />
 <%= params[:prediction][:omim_id]%>
 
-<div class="loading-panel vmiddle-major">
+<div class="loading-panel vmiddle-major" id="loading">
 <%= image_tag("loading.gif", :class => "loading") %>
 <%= image_tag("loading-hint.gif", :class => "loading") %>
 </div>
+
+<div id="prediction-results" data-task-id="<%= @task_id %>"></div>

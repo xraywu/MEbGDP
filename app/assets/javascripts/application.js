@@ -18,3 +18,17 @@
 //=require autocomplete-rails
 //= require rails.validations
 //= require jquery.colorbox
+
+$(function() {
+  if ($("#prediction-results").length > 0) {
+    setTimeout(updatePredictionResults, 5000);
+  }
+});
+
+function updatePredictionResults () {
+  if ($("#prediction-results").attr("data-result") != "true") {
+  	var task_id = $("#prediction-results").attr("data-task-id");
+    $.getScript("/predictions/pollResult.js?task_id=" + task_id)
+  	setTimeout(updatePredictionResults, 5000);
+  }
+}

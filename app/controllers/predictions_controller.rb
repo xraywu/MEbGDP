@@ -21,5 +21,16 @@ class PredictionsController < ApplicationController
       render :action => 'parameter'
     end
   end
+  
+  def pollResult
+    task_id = params[:task_id]
+    task_folder = Rails.root.join('task_temp',task_id)
+    if File.exists?("#{task_folder}\\finish")
+      #To make real results!
+      @results = Dir.entries(task_folder)
+    else
+      @reulsts = []
+    end
+  end
 
 end
