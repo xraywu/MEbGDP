@@ -22,13 +22,26 @@ class PredictionsController < ApplicationController
     end
   end
   
-  def pollResult
+  def pollAllResult
     task_id = params[:task_id]
     task_folder = Rails.root.join('task_temp',task_id)
     if File.exists?("#{task_folder}\\finish")
       File.delete("#{task_folder}\\finish")
+      writeOverlapResultFile(task_folder)
       @results = loadAllResultFiles(task_folder)
     end
+  end
+  
+  def showOverlappedResults
+    task_id = params[:task_id]
+    task_folder = Rails.root.join('task_temp',task_id)
+    @results = loadResultFile(task_folder, "overlapped.txt")
+  end
+  
+  def showAllResults
+    task_id = params[:task_id]
+    task_folder = Rails.root.join('task_temp',task_id)
+    @results = loadAllResultFiles(task_folder)
   end
   
   private
@@ -66,6 +79,44 @@ class PredictionsController < ApplicationController
        resultArray.push line
     }
     resultArray
+  end
+  
+  def writeOverlapResultFile(task_folder)   
+      results = []
+      if File.exists?("#{task_folder}\\seman_prior.txt")
+        seman_prior = loadResultFile(task_folder,"seman_prior.txt")
+        unless seman_prior.empty?
+          results.push(seman_prior)
+        end
+      end
+    
+      if File.exists?("#{task_folder}\\seman_nprior.txt")
+        seman_nprior = loadResultFile(task_folder,"seman_nprior.txt")
+        unless seman_prior.empty?
+          results.push(seman_nprior)
+        end
+      end
+    
+      if File.exists?("#{task_folder}\\ppi_prior.txt")
+        ppi_prior = loadResultFile(task_folder,"ppi_prior.txt")
+        unless seman_prior.empty?
+          results.push(ppi_prior)
+        end
+      end
+        
+    if File.exists?("#{task_folder}\\ppi_nprior.txt")
+      ppi_nprior = loadResultFile(task_folder,"ppi_nprior.txt")
+      unless seman_prior.empty?
+          results.push(ppi_nprior)
+      end
+    end
+    
+    overlappedResults = results[0]
+    results.each do |resultArray|
+      overlappedResults = resultArray & overlappedResults
+    end
+    
+    File.open("#{task_folder}\\overlapped.txt", "w", :type => 'text/html; charset=utf-8'){ |f| f << overlappedResults.join("")}
   end
 
 end

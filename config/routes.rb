@@ -8,7 +8,9 @@ MEbGDP::Application.routes.draw do
 
   get "predictions/parameter"
   get "predictions/predict"
-  get "predictions/pollResult"
+  get "predictions/pollAllResult"
+  get "predictions/showOverlappedResults"
+  get "predictions/showAllResults"
 
   get "diseases/search"
 

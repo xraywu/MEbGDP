@@ -1,11 +1,13 @@
 <% 
 max_result_num = 0
+array_nums = 0
 failed_prediction_messages = []
 @results.each do |resultHash|
 	resultHash.each do |network, resultArray|
 		if resultArray.empty?
 			failed_prediction_messages.push("Failed to predict phenotype-genotype relationship on #{network}")
 		else
+			array_nums += 1
 			result_num = resultArray.length
 			if result_num > max_result_num
 				max_result_num = result_num
@@ -22,6 +24,12 @@ end
     	<li><%= message %></li>
     <% end %>
     </ul>
+  </div>
+<% end %>
+
+<% unless array_nums <= 1%>
+  <div class="button-area">
+	<%= submit_tag "Show Overlapped Results", :onclick => "showOverlappedResults()", :class => "go-button smaller"%>
   </div>
 <% end %>
 

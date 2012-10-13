@@ -114,6 +114,10 @@ border-radius: 10px;
 	top:1px;
 }
 
+.smaller{
+	font-size: 13px;
+}
+
 /* Search Table */
 .result {
 	width: 1000px;
@@ -311,4 +315,11 @@ border-radius: 10px;
 	list-style: square;
 	text-align: left;
 	font-weight: bold;
+}
+
+.button-area{
+	text-align: center;
+	margin: auto;
+	padding-bottom: 10px;
+	display: block;
 }

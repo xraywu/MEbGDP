@@ -1,0 +1,6 @@
+<% unless @results.nil? %>
+$("#prediction-results").empty();
+$("#prediction-results").attr( "data-result", "true" );
+$("#prediction-results").append("<h2>Prediction Results</h2>");
+$("#prediction-results").append("<%=raw escape_javascript(render 'overlapped_prediction_results', :collection => @results) %>");
+<% end %>
