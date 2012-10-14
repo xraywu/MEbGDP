@@ -9,6 +9,7 @@ class PredictionsController < ApplicationController
   end
 
   def predict
+    @title = "Prediction Results"
     @parameter = Prediction.new(params[:prediction])
     if @parameter.valid?
        @task_id = Time.new.to_time.to_i
@@ -22,12 +23,12 @@ class PredictionsController < ApplicationController
     end
   end
   
-  def pollAllResult
+  def pollAllResults
     task_id = params[:task_id]
     task_folder = Rails.root.join('task_temp',task_id)
     if File.exists?("#{task_folder}\\finish")
       File.delete("#{task_folder}\\finish")
-      writeOverlapResultFile(task_folder)
+      writeOverlappedResultsFile(task_folder)
       @results = loadAllResultFiles(task_folder)
     end
   end
@@ -48,70 +49,72 @@ class PredictionsController < ApplicationController
   
   def loadAllResultFiles(task_folder)
     results = []
-    
+        
     if File.exists?("#{task_folder}\\seman_prior.txt")
       resultArray = loadResultFile(task_folder,"seman_prior.txt")
-        results.push Hash["Semantic Prior Network",resultArray]
+      results.push Hash["Semantic Prior Network",resultArray]
     end
     
     if File.exists?("#{task_folder}\\seman_nprior.txt")
       resultArray = loadResultFile(task_folder,"seman_nprior.txt")
-        results.push Hash["Semantic Non-Prior Network",resultArray]
+      results.push Hash["Semantic Non-Prior Network",resultArray]
     end
     
     if File.exists?("#{task_folder}\\ppi_prior.txt")
       resultArray = loadResultFile(task_folder,"ppi_prior.txt")
-        results.push Hash["PPI Prior Network",resultArray]
+      results.push Hash["PPI Prior Network",resultArray]
     end
         
     if File.exists?("#{task_folder}\\ppi_nprior.txt")
       resultArray = loadResultFile(task_folder,"ppi_nprior.txt")
-        results.push Hash["PPI Non-Prior Network",resultArray]
-    end
-        
+      results.push Hash["PPI Non-Prior Network",resultArray]
+    end  
+         
     return results
   end
   
   def loadResultFile(task_folder, file_name)
     resultArray = []
     f = File.open("#{task_folder}\\#{file_name}") or die "Unable to open file..."
-    f.each_line {|line|
+    f.each_line do |line|
        resultArray.push line
-    }
+    end
     resultArray
   end
   
-  def writeOverlapResultFile(task_folder)   
-      results = []
-      if File.exists?("#{task_folder}\\seman_prior.txt")
-        seman_prior = loadResultFile(task_folder,"seman_prior.txt")
-        unless seman_prior.empty?
-          results.push(seman_prior)
-        end
-      end
+  def writeOverlappedResultsFile(task_folder)   
+    results = []
     
-      if File.exists?("#{task_folder}\\seman_nprior.txt")
-        seman_nprior = loadResultFile(task_folder,"seman_nprior.txt")
-        unless seman_prior.empty?
-          results.push(seman_nprior)
-        end
+    if File.exists?("#{task_folder}\\seman_prior.txt")
+      seman_prior = loadResultFile(task_folder,"seman_prior.txt")
+      unless seman_prior.empty?
+        results.push(seman_prior)
       end
+    end
     
-      if File.exists?("#{task_folder}\\ppi_prior.txt")
-        ppi_prior = loadResultFile(task_folder,"ppi_prior.txt")
-        unless seman_prior.empty?
-          results.push(ppi_prior)
-        end
+    if File.exists?("#{task_folder}\\seman_nprior.txt")
+      seman_nprior = loadResultFile(task_folder,"seman_nprior.txt")
+      unless seman_nprior.empty?
+        results.push(seman_nprior)
       end
+    end
+    
+    if File.exists?("#{task_folder}\\ppi_prior.txt")
+      ppi_prior = loadResultFile(task_folder,"ppi_prior.txt")
+      unless ppi_prior.empty?
+        results.push(ppi_prior)
+      end
+    end
         
     if File.exists?("#{task_folder}\\ppi_nprior.txt")
       ppi_nprior = loadResultFile(task_folder,"ppi_nprior.txt")
-      unless seman_prior.empty?
-          results.push(ppi_nprior)
+      unless ppi_nprior.empty?
+        results.push(ppi_nprior)
       end
     end
     
     overlappedResults = results[0]
+    
     results.each do |resultArray|
       overlappedResults = resultArray & overlappedResults
     end

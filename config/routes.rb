@@ -8,7 +8,7 @@ MEbGDP::Application.routes.draw do
 
   get "predictions/parameter"
   get "predictions/predict"
-  get "predictions/pollAllResult"
+  get "predictions/pollAllResults"
   get "predictions/showOverlappedResults"
   get "predictions/showAllResults"
 

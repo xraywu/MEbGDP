@@ -1,32 +1,30 @@
 <% if @results.empty? %>
   <div class="vmiddle-major">
-	<h4>No Overlapped Result Predicted on All Networks!</h4>
-	<div class="button-area">
-		<%= submit_tag "Show All Results", :onclick => "showAllResults()", :class => "go-button smaller"%>
-	</div>
+    <h4>No Overlapped Result Predicted on All Networks!</h4>
+    <div class="button-area">
+      <%= submit_tag "Show All Results", :onclick => "showAllResults()", :class => "go-button smaller"%>
+    </div>
   </div>
 <% else %>
+  <div class="button-area">
+    <%= submit_tag "Show All Results", :onclick => "showAllResults()", :class => "go-button smaller"%>
+  </div>
 
-	<div class="button-area">
-		<%= submit_tag "Show All Results", :onclick => "showAllResults()", :class => "go-button smaller"%>
-	</div>
-
-	<table class="prediction-rank-table">
-		<thead><tr><th>#</th></tr></thead>
-		<tbody>
-		<% for row_num in 1..@results.length %>
-	 		<tr><td><%= row_num %></td></tr>
-		<% end %>
-		</tbody>
-	</table>
-	
-	<table class="prediction-result-table">
-		<thead><tr><th>Overlapped Gene</th></tr></thead>
-		<tbody>
-			<% @results.each do |result| %>
-	  			<tr><td><%= result %></td></tr>
-			<% end %>
-		</tbody>
-	</table>
-	
+  <table class="prediction-rank-table">
+    <thead><tr><th>#</th></tr></thead>
+    <tbody>
+      <% for row_num in 1..@results.length %>
+        <tr><td><%= row_num %></td></tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <table class="prediction-result-table">
+    <thead><tr><th>Overlapped Gene</th></tr></thead>
+    <tbody>
+      <% @results.each do |result| %>
+        <tr><td><%= result %></td></tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
