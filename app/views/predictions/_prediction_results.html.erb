@@ -27,9 +27,13 @@ end
   </div>
 <% end %>
 
-<% unless array_nums <= 1%>
+<% unless array_nums <= 1 %>
   <div class="button-area">
 	<%= submit_tag "Show Overlapped Results", :onclick => "showOverlappedResults()", :class => "go-button smaller"%>
+	<%= form_tag( {:controller => 'predictions', :action => 'downloadResults'}, :class => "inline-display" ) do %>
+  		<%= text_field_tag "task_id", @task_id, :type => "hidden" %>
+  		<%= submit_tag "Download Results", :class => "go-button smaller"%>
+  	<% end %>
   </div>
 <% end %>
 

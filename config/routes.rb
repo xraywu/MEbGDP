@@ -11,6 +11,7 @@ MEbGDP::Application.routes.draw do
   get "predictions/pollAllResults"
   get "predictions/showOverlappedResults"
   get "predictions/showAllResults"
+  post "predictions/downloadResults"
 
   get "diseases/search"
 

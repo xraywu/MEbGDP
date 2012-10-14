@@ -1,5 +1,7 @@
 class PredictionsController < ApplicationController
   require Rails.root.join('app', 'tasks', 'RwrhJob.rb')
+  require 'rubygems'
+  require 'zip/zip'
   
   def parameter
     @disease = Disease.find_by_omim_id(params[:omim_id])
@@ -24,8 +26,8 @@ class PredictionsController < ApplicationController
   end
   
   def pollAllResults
-    task_id = params[:task_id]
-    task_folder = Rails.root.join('task_temp',task_id)
+    @task_id = params[:task_id]
+    task_folder = Rails.root.join('task_temp',@task_id)
     if File.exists?("#{task_folder}\\finish")
       File.delete("#{task_folder}\\finish")
       writeOverlappedResultsFile(task_folder)
@@ -34,15 +36,22 @@ class PredictionsController < ApplicationController
   end
   
   def showOverlappedResults
-    task_id = params[:task_id]
-    task_folder = Rails.root.join('task_temp',task_id)
+    @task_id = params[:task_id]
+    task_folder = Rails.root.join('task_temp',@task_id)
     @results = loadResultFile(task_folder, "overlapped.txt")
   end
   
   def showAllResults
+    @task_id = params[:task_id]
+    task_folder = Rails.root.join('task_temp',@task_id)
+    @results = loadAllResultFiles(task_folder)
+  end
+  
+  def downloadResults
     task_id = params[:task_id]
     task_folder = Rails.root.join('task_temp',task_id)
-    @results = loadAllResultFiles(task_folder)
+    zipfile_name = generateZipFile(task_id)
+    send_file zipfile_name, :type=>"application/zip" 
   end
   
   private
@@ -120,6 +129,24 @@ class PredictionsController < ApplicationController
     end
     
     File.open("#{task_folder}\\overlapped.txt", "w", :type => 'text/html; charset=utf-8'){ |f| f << overlappedResults.join("")}
+  end
+
+  def generateZipFile(task_id)
+    task_folder = Rails.root.join('task_temp',task_id)
+    zipfile_name = "#{task_folder}\\#{task_id}.zip"
+    if File.exists?(zipfile_name)
+      File.delete(zipfile_name)
+    end
+    
+    result_files = Dir.entries(task_folder)
+    Zip::ZipFile.open(zipfile_name, Zip::ZipFile::CREATE) do |zipfile|
+      result_files.each do |filename|
+        unless filename == "." || filename == ".."
+          zipfile.add(filename, "#{task_folder}\\#{filename}")
+        end
+      end
+    end
+    return zipfile_name
   end
 
 end
