@@ -1,0 +1,80 @@
+
+
+<table class="gene-info-table">
+	<tr>
+		<th>Gene Symbol</th>
+		<td><%= @gene.symbol %></td>
+	</tr>
+	<tr>
+		<th>Gene Name</th>
+		<td><%= @gene.name %></td>
+	</tr>
+	
+	<% unless @gene.synonym.blank? %>
+	<tr>
+		<th>Other Symbols</th>
+		<td><%= @gene.synonym %></td>
+	</tr>
+	<% end %>
+	
+	<% unless @gene.name_synonym.blank? %>
+	<tr>
+		<th>Synonym</th>
+		<td><%= raw comma2linebreaker(@gene.name_synonym) %></td>
+	</tr>
+	<% end %>
+	
+	<% unless @gene.chromosome_location.blank? %>
+	<tr>
+		<th>Chromosome Location</th>
+		<td><%= @gene.chromosome_location %></td>
+	</tr>
+	<% end %>
+	
+	<% unless @gene.accession_numbers.blank? %>
+	<tr>
+		<th>Accession Numbers</th>
+		<td>
+			<% accessionArray = @gene.accession_numbers.split(', ')
+			   accessionArray.each do |accession_number| %>
+				<%= link_to accession_number, accession_link(accession_number), :target => "_blank" %>   
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+	
+	<% unless @gene.hgnc_id.blank? %>	
+	<tr>
+		<th>HGNC ID</th>
+		<td><%= link_to "HGNC:#{@gene.hgnc_id}", hgnc_link(@gene.hgnc_id), :target => "_blank" %></td>
+	</tr>
+	<% end %>
+	
+	<% unless @gene.ensembl_gene_id.blank? %>	
+	<tr>
+		<th>Ensembl Gene ID</th>
+		<td><%= link_to @gene.ensembl_gene_id, ensembl_link(@gene.ensembl_gene_id), :target => "_blank" %></td>
+	</tr>
+	<% end %>
+	
+	<% unless @gene.refseq_id.blank? %>
+	<tr>
+		<th>Refseq ID</th>
+		<td><%= link_to @gene.refseq_id, refseq_link(@gene.refseq_id), :target => "_blank" %></td>
+	</tr>
+	<% end %>
+	
+	<% unless @gene.uniprot_id.blank? %>
+	<tr>
+		<th>Uniprot ID</th>
+		<td><%= link_to @gene.uniprot_id, uniprot_link(@gene.uniprot_id), :target => "_blank" %></td>
+	</tr>
+	<% end %>
+	
+	<% unless @gene.mgi_id.blank? %>
+	<tr>
+		<th>MGI ID</th>
+		<td><%= link_to @gene.mgi_id, mgi_link(@gene.mgi_id), :target => "_blank" %></td>
+	</tr>
+	<% end %>		
+</table>

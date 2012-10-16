@@ -10,6 +10,8 @@
     </div>
   </div>
 <% else %>
+  <%= render 'shared/initial_colorbox' %>
+
   <div class="button-area">
     <%= submit_tag "Show All Results", :onclick => "showAllResults()", :class => "go-button smaller"%>
     <%= form_tag( {:controller => 'predictions', :action => 'downloadResults'}, :class => "inline-display" ) do %>
@@ -31,7 +33,10 @@
     <thead><tr><th>Overlapped Gene</th></tr></thead>
     <tbody>
       <% @results.each do |result| %>
-        <tr><td><%= result %></td></tr>
+        <tr><td>
+          <%= link_to result, { :controller => "genes", :action => "search", :symbol => result }, 
+	          					:class => "gene-information-colorbox", :title => "Gene Information" %>
+        </td></tr>
       <% end %>
     </tbody>
   </table>

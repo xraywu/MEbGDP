@@ -61,24 +61,28 @@ class PredictionsController < ApplicationController
         
     if File.exists?("#{task_folder}\\seman_prior.txt")
       resultArray = loadResultFile(task_folder,"seman_prior.txt")
+      resultArray.collect! {|result| result.chomp }
       results.push Hash["Semantic Prior Network",resultArray]
     end
     
     if File.exists?("#{task_folder}\\seman_nprior.txt")
       resultArray = loadResultFile(task_folder,"seman_nprior.txt")
+      resultArray.collect! {|result| result.chomp }
       results.push Hash["Semantic Non-Prior Network",resultArray]
     end
     
     if File.exists?("#{task_folder}\\ppi_prior.txt")
       resultArray = loadResultFile(task_folder,"ppi_prior.txt")
+      resultArray.collect! {|result| result.chomp }
       results.push Hash["PPI Prior Network",resultArray]
     end
         
     if File.exists?("#{task_folder}\\ppi_nprior.txt")
       resultArray = loadResultFile(task_folder,"ppi_nprior.txt")
+      resultArray.collect! {|result| result.chomp }
       results.push Hash["PPI Non-Prior Network",resultArray]
-    end  
-         
+    end
+    
     return results
   end
   
@@ -88,7 +92,7 @@ class PredictionsController < ApplicationController
     f.each_line do |line|
        resultArray.push line
     end
-    resultArray
+    resultArray.collect! {|result| result.chomp } 
   end
   
   def writeOverlappedResultsFile(task_folder)   
@@ -128,7 +132,7 @@ class PredictionsController < ApplicationController
       overlappedResults = resultArray & overlappedResults
     end
     
-    File.open("#{task_folder}\\overlapped.txt", "w", :type => 'text/html; charset=utf-8'){ |f| f << overlappedResults.join("")}
+    File.open("#{task_folder}\\overlapped.txt", "w", :type => 'text/html; charset=utf-8'){ |f| f << overlappedResults.join("\n")}
   end
 
   def generateZipFile(task_id)

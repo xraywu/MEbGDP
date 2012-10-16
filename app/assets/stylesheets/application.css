@@ -327,3 +327,28 @@ border-radius: 10px;
 	padding-bottom: 10px;
 	display: block;
 }
+
+/* Gene Information Table */
+
+.gene-info-table{
+	width: 600px;
+	
+}
+
+.gene-info-table tr{
+
+}
+
+.gene-info-table th{
+	background: #c3d9ff;
+	text-align: center;
+	width: 30%;
+	border-bottom: 2px solid white;
+	border-right: 2px solid white;
+	border-collapse:collapse;
+}
+
+.gene-info-table td{
+	border-bottom: 2px solid white;
+	border-collapse:collapse;
+}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121010204123) do
+ActiveRecord::Schema.define(:version => 20121016180120) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -38,5 +38,24 @@ ActiveRecord::Schema.define(:version => 20121010204123) do
 
   add_index "diseases", ["disease_name"], :name => "index_diseases_on_disease_name"
   add_index "diseases", ["omim_id"], :name => "index_diseases_on_omim_id", :unique => true
+
+  create_table "genes", :force => true do |t|
+    t.integer  "hgnc_id"
+    t.string   "symbol"
+    t.string   "name"
+    t.string   "synonym"
+    t.string   "name_synonym",        :limit => 5000
+    t.string   "chromosome_location"
+    t.string   "accession_numbers"
+    t.string   "ensembl_gene_id"
+    t.string   "mgi_id"
+    t.string   "refseq_id"
+    t.string   "uniprot_id"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
+  add_index "genes", ["hgnc_id"], :name => "index_genes_on_hgnc_id", :unique => true
+  add_index "genes", ["symbol"], :name => "index_genes_on_symbol", :unique => true
 
 end

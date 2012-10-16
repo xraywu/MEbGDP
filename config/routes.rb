@@ -14,6 +14,8 @@ MEbGDP::Application.routes.draw do
   post "predictions/downloadResults"
 
   get "diseases/search"
+  
+  get "genes/search"
 
   root :to => 'pages#home'
   match '/about', :to => 'pages#about'

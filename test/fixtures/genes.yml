@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  hgnc_id: 1
+  symbol: MyString
+  name: MyString
+  synonym: MyString
+  name_synonym: MyString
+  chromosome_location: MyString
+  ensembl_gene_id: MyString
+  mgi_id: MyString
+  refseq_id: MyString
+  uniprot_id: MyString
+  accession_numbers: MyString
+
+two:
+  hgnc_id: 1
+  symbol: MyString
+  name: MyString
+  synonym: MyString
+  name_synonym: MyString
+  chromosome_location: MyString
+  ensembl_gene_id: MyString
+  mgi_id: MyString
+  refseq_id: MyString
+  uniprot_id: MyString
+  accession_numbers: MyString
