@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121016180120) do
+ActiveRecord::Schema.define(:version => 20121017193659) do
+
+  create_table "alleles", :force => true do |t|
+    t.string   "allele_mgi"
+    t.string   "allele_symbol"
+    t.string   "allele_name",   :limit => 1000
+    t.string   "allele_type"
+    t.string   "gene_mgi"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "alleles", ["allele_mgi"], :name => "index_alleles_on_allele_mgi", :unique => true
+  add_index "alleles", ["gene_mgi"], :name => "index_alleles_on_gene_mgi"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0

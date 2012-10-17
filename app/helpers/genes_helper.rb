@@ -21,11 +21,21 @@ module GenesHelper
   end
   
   def accession_link(accession_number)
-    "http://www.ncbi.nlm.nih.gov/pubmed?term=" + accession_number.to_s
+    "http://www.ncbi.nlm.nih.gov/gquery?term=" + accession_number.to_s
   end
   
   def comma2linebreaker(string)
     string.gsub(/, /) {|s| "<br />" }
+  end
+  
+  def formatAlleleName(allele)
+    allele.sub!(/>/) {|s| "</sup>" }
+    allele.sub!(/</) {|s| "<sup>" }
+    
+  end
+  
+  def mgi_allele_link(mgi_id)
+    "http://www.informatics.jax.org/searchtool/Search.do?query=" + mgi_id
   end
 
 end

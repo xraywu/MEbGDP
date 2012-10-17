@@ -1,5 +1,3 @@
-
-
 <table class="gene-info-table">
 	<tr>
 		<th>Gene Symbol</th>
@@ -76,5 +74,16 @@
 		<th>MGI ID</th>
 		<td><%= link_to @gene.mgi_id, mgi_link(@gene.mgi_id), :target => "_blank" %></td>
 	</tr>
+		<% unless @gene.allele.empty?%>
+		<tr>
+			<th>Gene Alleles</th>
+			<td>
+				<% @gene.allele.each do |a| %>
+					<%= link_to raw(formatAlleleName(a.allele_symbol)), mgi_allele_link(a.allele_mgi), :target => "_blank" %><br />
+				<% end %>
+			</td>
+				
+		</tr>	
+		<% end %>
 	<% end %>		
 </table>

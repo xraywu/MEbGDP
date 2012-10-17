@@ -17,5 +17,6 @@ class CreateGenes < ActiveRecord::Migration
     end
   add_index :genes, :symbol, :unique => true, :null => false
   add_index :genes, :hgnc_id, :unique => true, :null => false
+  add_index :genes, :mgi_id
   end
 end

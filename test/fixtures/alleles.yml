@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  allele_mgi: MyString
+  allele_symbol: MyString
+  allele_name: MyString
+  allele_type: MyString
+  gene_mgi: MyString
+
+two:
+  allele_mgi: MyString
+  allele_symbol: MyString
+  allele_name: MyString
+  allele_type: MyString
+  gene_mgi: MyString
