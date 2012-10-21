@@ -6,7 +6,7 @@ class Prediction
   attr_accessor :omim_id, :top_results, :lambda, :eta, :gamma, :network
  
   validates :omim_id, :presence => true, :numericality => { :greater_than => 0, :only_integer => true }
-  validates :top_results, :presence => true, :numericality => { :greater_than => 0, :less_than => 5000, :only_integer => true }
+  validates :top_results, :presence => true, :numericality => { :greater_than => 0, :less_than => 2000, :only_integer => true }
   validates :lambda, :presence => true, :numericality => { :greater_than => 0, :less_than => 1 }
   validates :eta, :presence => true, :numericality => { :greater_than => 0, :less_than => 1 }
   validates :gamma, :presence => true, :numericality => { :greater_than => 0, :less_than => 1 }

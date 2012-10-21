@@ -2,3 +2,10 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
+
+tr.gene-in-interval:nth-child(n) td{
+	background:#FBD2D4;
+	outline: 1px solid white;
+}
+

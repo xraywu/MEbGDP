@@ -15,6 +15,7 @@ class PredictionsController < ApplicationController
     @parameter = Prediction.new(params[:prediction])
     if @parameter.valid?
        @task_id = Time.new.to_time.to_i
+       @omim_id = params[:prediction][:omim_id]
        Delayed::Job.enqueue RwrhJob.new(params[:prediction][:omim_id],
                                         params[:prediction][:top_results],params[:prediction][:lambda],
                                         params[:prediction][:gamma],params[:prediction][:eta],
@@ -29,6 +30,7 @@ class PredictionsController < ApplicationController
     @task_id = params[:task_id]
     task_folder = Rails.root.join('task_temp',@task_id)
     if File.exists?("#{task_folder}\\finish")
+      @linkage_interval = getLinkageInterval(params[:omim_id])
       File.delete("#{task_folder}\\finish")
       writeOverlappedResultsFile(task_folder)
       @results = loadAllResultFiles(task_folder)
@@ -37,12 +39,14 @@ class PredictionsController < ApplicationController
   
   def showOverlappedResults
     @task_id = params[:task_id]
+    @linkage_interval = getLinkageInterval(params[:omim_id])
     task_folder = Rails.root.join('task_temp',@task_id)
     @results = loadResultFile(task_folder, "overlapped.txt")
   end
   
   def showAllResults
     @task_id = params[:task_id]
+    @linkage_interval = getLinkageInterval(params[:omim_id])
     task_folder = Rails.root.join('task_temp',@task_id)
     @results = loadAllResultFiles(task_folder)
   end
@@ -151,6 +155,11 @@ class PredictionsController < ApplicationController
       end
     end
     return zipfile_name
+  end
+
+  def getLinkageInterval(omim_id)
+    #To add real method
+    linkage_interval = ["2q22.3","1p11","Xq28"]
   end
 
 end

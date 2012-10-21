@@ -33,7 +33,7 @@
     <thead><tr><th>Overlapped Gene</th></tr></thead>
     <tbody>
       <% @results.each do |result| %>
-        <tr><td>
+        <tr class="<%= checkGeneLocation(result, @linkage_interval) %>"><td>
           <%= link_to result, { :controller => "genes", :action => "search", :symbol => result }, 
 	          					:class => "gene-information-colorbox", :title => "Gene Information" %>
         </td></tr>

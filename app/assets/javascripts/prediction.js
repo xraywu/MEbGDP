@@ -10,17 +10,20 @@ $(function() {
 function updatePredictionResults() {
   if ($("#prediction-results").attr("data-result") != "true") {
   	var task_id = $("#prediction-results").attr("data-task-id");
-    $.getScript("/predictions/pollAllResults.js?task_id=" + task_id);
+  	var omim_id = $("#prediction-results").attr("data-omim-id");
+    $.getScript("/predictions/pollAllResults.js?task_id=" + task_id + "&omim_id=" + omim_id);
   	setTimeout(updatePredictionResults, 5000);
   }
 }
 
 function showOverlappedResults() {
   var task_id = $("#prediction-results").attr("data-task-id");
-  $.getScript("/predictions/showOverlappedResults.js?task_id=" + task_id);
+  var omim_id = $("#prediction-results").attr("data-omim-id");
+  $.getScript("/predictions/showOverlappedResults.js?task_id=" + task_id + "&omim_id=" + omim_id);
 }
 
 function showAllResults() {
   var task_id = $("#prediction-results").attr("data-task-id");
-  $.getScript("/predictions/showAllResults.js?task_id=" + task_id);
+  var omim_id = $("#prediction-results").attr("data-omim-id");
+  $.getScript("/predictions/showAllResults.js?task_id=" + task_id + "&omim_id=" + omim_id);
 }
