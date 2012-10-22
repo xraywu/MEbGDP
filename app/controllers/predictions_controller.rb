@@ -28,9 +28,10 @@ class PredictionsController < ApplicationController
   
   def pollAllResults
     @task_id = params[:task_id]
+    @omim_id = params[:omim_id]
     task_folder = Rails.root.join('task_temp',@task_id)
     if File.exists?("#{task_folder}\\finish")
-      @linkage_interval = getLinkageInterval(params[:omim_id])
+      @linkage_interval = getLinkageInterval(@omim_id)
       File.delete("#{task_folder}\\finish")
       writeOverlappedResultsFile(task_folder)
       @results = loadAllResultFiles(task_folder)
@@ -39,14 +40,16 @@ class PredictionsController < ApplicationController
   
   def showOverlappedResults
     @task_id = params[:task_id]
-    @linkage_interval = getLinkageInterval(params[:omim_id])
+    @omim_id = params[:omim_id]
+    @linkage_interval = getLinkageInterval(@omim_id)
     task_folder = Rails.root.join('task_temp',@task_id)
     @results = loadResultFile(task_folder, "overlapped.txt")
   end
   
   def showAllResults
     @task_id = params[:task_id]
-    @linkage_interval = getLinkageInterval(params[:omim_id])
+    @omim_id = params[:omim_id]
+    @linkage_interval = getLinkageInterval(@omim_id)
     task_folder = Rails.root.join('task_temp',@task_id)
     @results = loadAllResultFiles(task_folder)
   end

@@ -9,3 +9,33 @@ tr.gene-in-interval:nth-child(n) td{
 	outline: 1px solid white;
 }
 
+tr.gene-known-to-disease:nth-child(n) td{
+	background:#E6EFC2;
+	outline: 1px solid white;
+}
+
+.legend{
+	margin-top: 30px;
+	margin-bottom: 5px;
+}
+
+.green-square {
+	display: inline;
+	background:#E6EFC2;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	outline: 1px solid black;
+}
+
+.red-square {
+	display: inline;
+	background:#FBD2D4;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-left: 10px;
+	outline: 1px solid black;
+}

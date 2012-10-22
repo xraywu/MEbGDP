@@ -36,6 +36,10 @@ end
   		<%= text_field_tag "task_id", @task_id, :type => "hidden" %>
   		<%= submit_tag "Download Results", :class => "go-button smaller"%>
   	<% end %>
+  	<div class="legend">
+  		<div class="green-square">Gene Known to the Disease</div>
+  		<div class="red-square">Gene on a Known Linkage Interval</div>
+  	</div>
   </div>
 <% end %>
 
@@ -54,7 +58,7 @@ end
 	    <thead><tr><th><%= network %></th></tr></thead>
 	    <tbody>
 	      <% resultArray.each do |result| %>
-	        <tr class="<%= checkGeneLocation(result, @linkage_interval) %>"><td>
+	        <tr class="<%= checkGeneLocation(result, @linkage_interval, @omim_id) %>"><td>
 	          <%= link_to result, { :controller => "genes", :action => "search", :symbol => result }, 
 	          						:class => "gene-information-colorbox", :title => "Gene Information" %>
 	        </td></tr>
