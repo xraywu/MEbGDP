@@ -17,9 +17,9 @@ module PredictionHelper
         end
       end      
       
-      linkage_interval.each do |interval|
-        if gene.chromosome_location == interval
-          return "gene-in-interval"
+      unless linkage_interval.nil?
+        linkage_interval.each do |interval|
+          return "gene-in-interval" if gene.in_interval?(interval)
         end
       end
     end

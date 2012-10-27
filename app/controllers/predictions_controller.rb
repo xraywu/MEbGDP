@@ -1,7 +1,11 @@
 class PredictionsController < ApplicationController
   require Rails.root.join('app', 'tasks', 'RwrhJob.rb')
-  require 'rubygems'
   require 'zip/zip'
+  require 'open-uri'
+  
+  OMIM_API_KEY = '30C52EDBCFC6F856381C6FC7C10B852FCB36CA3B'
+  OMIM_API_URL = 'http://api.omim.org/api/entry'
+  OMIM_INCLUDED_SECTIONS = 'include=text:cytogenetics&include=text:description&include=text:molecularGenetics'
   
   def parameter
     @disease = Disease.find_by_omim_id(params[:omim_id])
@@ -161,8 +165,37 @@ class PredictionsController < ApplicationController
   end
 
   def getLinkageInterval(omim_id)
-    #To add real method
-    linkage_interval = ["2q22.3","1p11","Xq28"]
+    information_url = "#{OMIM_API_URL}?mimNumber=#{omim_id}&apiKey=#{OMIM_API_KEY}&#{OMIM_INCLUDED_SECTIONS}"
+    information_xml = Nokogiri::XML(open(information_url))
+    information_to_be_parsed = information_xml.xpath("////textSectionContent").to_s
+    linkage_interval = parse_linkage_interval(information_to_be_parsed)
+  end
+  
+  def parse_linkage_interval(information)
+    linkage_interval = []
+    #Use rubular.com for verification
+    interval_pattern1 = /t\((((\d+|X|Y);*)+)\)\((((\d+|X|Y)*(p|q)(\d+)(\.\d+)*;*)+)\)/ #e.g. t(2;12;X)(q22.3;12q22;q21.33)
+    interval_pattern2 = /((\d+|X|Y)(p|q)(\d+)(\.\d)*(-(p|q)(\d+)(\.\d)*)*)/ #e.g. 12q11.3-q12
+    simple_pattern = /(\d+|X|Y)+((p|q)\d+(\.\d+)*)/ #e.g 12q11.3
+    
+    information.scan(interval_pattern1).each do |m|
+      chromosome = m[0].split(';') #m[0] is the first parentheses
+      band = m[3].split(';')  #m[3] is the second parentheses
+      interval = chromosome.map.with_index do |elem, idx|
+        if band[idx] =~ simple_pattern
+          elem + $2 #$2 is the q11.3 part 
+        else
+          elem + band[idx]
+        end
+      end  
+      linkage_interval.concat(interval)
+    end
+    
+    information.scan(interval_pattern2).each do |m|
+      linkage_interval.push(m[0]) #m[0] is the whole match
+    end
+    
+    linkage_interval.uniq!
   end
 
 end
