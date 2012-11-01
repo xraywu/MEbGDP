@@ -122,6 +122,12 @@ border-radius: 10px;
 	font-size: 13px;
 }
 
+.smallest{
+	font-size: 11px;
+	white-space: normal;
+	width: 170px;
+}
+
 /* Search Table */
 .result {
 	width: 1000px;

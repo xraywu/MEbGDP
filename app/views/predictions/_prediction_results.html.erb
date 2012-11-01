@@ -32,7 +32,7 @@ end
 <% unless array_nums <= 1 %>
   <div class="button-area">
 	<%= submit_tag "Show Overlapped Results", :onclick => "showOverlappedResults()", :class => "go-button smaller"%>
-	<%= form_tag( {:controller => 'predictions', :action => 'downloadResults'}, :class => "inline-display" ) do %>
+	<%= form_tag( {:controller => 'predictions', :action => 'downloadResults'}, :class => "inline-display", :method => "get" ) do %>
   		<%= text_field_tag "task_id", @task_id, :type => "hidden" %>
   		<%= submit_tag "Download Results", :class => "go-button smaller"%>
   	<% end %>
@@ -59,7 +59,7 @@ end
 	    <tbody>
 	      <% resultArray.each do |result| %>
 	        <tr class="<%= checkGeneLocation(result, @linkage_interval, @omim_id) %>"><td>
-	          <%= link_to result, { :controller => "genes", :action => "search", :symbol => result }, 
+	          <%= link_to result, { :controller => "genes", :action => "search", :symbol => result, :omim_id => @omim_id }, 
 	          						:class => "gene-information-colorbox", :title => "Gene Information" %>
 	        </td></tr>
 	      <% end %>

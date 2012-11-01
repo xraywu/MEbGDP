@@ -18,4 +18,8 @@ class TipsController < ApplicationController
   def net_selection 
     render :layout => "noLayout"
   end
+  
+  def phenome_net
+    render :layout => "noLayout"
+  end
 end

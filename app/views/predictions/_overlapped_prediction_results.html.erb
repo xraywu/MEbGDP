@@ -3,7 +3,7 @@
     <h4>No Overlapped Result Predicted on All Networks!</h4>
     <div class="button-area">
       <%= submit_tag "Show All Results", :onclick => "showAllResults()", :class => "go-button smaller"%>
-      <%= form_tag( {:controller => 'predictions', :action => 'downloadResults'}, :class => "inline-display" ) do %>
+      <%= form_tag( {:controller => 'predictions', :action => 'downloadResults'}, :class => "inline-display", :method => "get" ) do %>
   		<%= text_field_tag "task_id", @task_id, :type => "hidden" %>
   		<%= submit_tag "Download Results", :class => "go-button smaller"%>
   	  <% end %>
@@ -14,7 +14,7 @@
 
   <div class="button-area">
     <%= submit_tag "Show All Results", :onclick => "showAllResults()", :class => "go-button smaller"%>
-    <%= form_tag( {:controller => 'predictions', :action => 'downloadResults'}, :class => "inline-display" ) do %>
+    <%= form_tag( {:controller => 'predictions', :action => 'downloadResults'}, :class => "inline-display", :method => "get" ) do %>
   		<%= text_field_tag "task_id", @task_id, :type => "hidden" %>
   		<%= submit_tag "Download Results", :class => "go-button smaller"%>
   	<% end %>

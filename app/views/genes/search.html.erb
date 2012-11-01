@@ -1,3 +1,5 @@
+<%= render 'shared/enableTipScript'%>
+
 <table class="gene-info-table">
 	<tr>
 		<th>Gene Symbol</th>
@@ -76,10 +78,23 @@
 	</tr>
 		<% unless @gene.allele.empty?%>
 		<tr>
-			<th>Gene Alleles</th>
+			<th>
+				Gene Alleles
+				<%= link_to image_tag("infoButton.png", 
+									  :size => "24x24", 
+									  :class => "field-infobutton", 
+									  :data => { :url => tips_phenome_net_path }),
+									  "http://nar.oxfordjournals.org/content/early/2011/07/06/nar.gkr538.full",
+									  :target => "_blank" %>
+				<%= form_tag( {:controller => 'genes', :action => 'compare_phenotype'}, :class => "inline-display", :method => 'get', :target => "_blank") do %>
+  					<%= text_field_tag "omim_id", @omim_id, :type => "hidden" %>
+  					<%= text_field_tag "symbol", @gene.symbol, :type => "hidden" %>
+  					<%= submit_tag "Human vs. Animal Models", :class => "go-button smallest", :target => "_blank" %>
+  				<% end %>
+			</th>
 			<td>
 				<% @gene.allele.each do |a| %>
-					<%= link_to raw(formatAlleleName(a.allele_symbol)), mgi_allele_link(a.allele_mgi), :target => "_blank" %><br />
+					<%= link_to raw(formatAlleleName(a.allele_symbol)), mgi_allele_link(a.allele_mgi) %><br />
 				<% end %>
 			</td>
 				

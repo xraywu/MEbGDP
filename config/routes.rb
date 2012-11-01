@@ -5,17 +5,19 @@ MEbGDP::Application.routes.draw do
   get "tips/lambda"
   get "tips/eta"
   get "tips/net_selection"
+  get "tips/phenome_net"
 
   get "predictions/parameter"
   get "predictions/predict"
   get "predictions/pollAllResults"
   get "predictions/showOverlappedResults"
   get "predictions/showAllResults"
-  post "predictions/downloadResults"
+  get "predictions/downloadResults"
 
   get "diseases/search"
   
   get "genes/search"
+  get "genes/compare_phenotype"
 
   root :to => 'pages#home'
   match '/about', :to => 'pages#about'
