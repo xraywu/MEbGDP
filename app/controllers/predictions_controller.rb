@@ -34,9 +34,9 @@ class PredictionsController < ApplicationController
     @task_id = params[:task_id]
     @omim_id = params[:omim_id]
     task_folder = Rails.root.join('task_temp',@task_id)
-    if File.exists?("#{task_folder}\\finish")
+    if File.exists?("#{task_folder}/finish")
       @linkage_interval = getLinkageInterval(@omim_id)
-      File.delete("#{task_folder}\\finish")
+      File.delete("#{task_folder}/finish")
       writeOverlappedResultsFile(task_folder)
       @results = loadAllResultFiles(task_folder)
     end
@@ -70,25 +70,25 @@ class PredictionsController < ApplicationController
   def loadAllResultFiles(task_folder)
     results = []
         
-    if File.exists?("#{task_folder}\\seman_prior.txt")
+    if File.exists?("#{task_folder}/seman_prior.txt")
       resultArray = loadResultFile(task_folder,"seman_prior.txt")
       resultArray.collect! {|result| result.chomp }
       results.push Hash["Semantic Prior Network",resultArray]
     end
     
-    if File.exists?("#{task_folder}\\seman_nprior.txt")
+    if File.exists?("#{task_folder}/seman_nprior.txt")
       resultArray = loadResultFile(task_folder,"seman_nprior.txt")
       resultArray.collect! {|result| result.chomp }
       results.push Hash["Semantic Non-Prior Network",resultArray]
     end
     
-    if File.exists?("#{task_folder}\\ppi_prior.txt")
+    if File.exists?("#{task_folder}/ppi_prior.txt")
       resultArray = loadResultFile(task_folder,"ppi_prior.txt")
       resultArray.collect! {|result| result.chomp }
       results.push Hash["PPI Prior Network",resultArray]
     end
         
-    if File.exists?("#{task_folder}\\ppi_nprior.txt")
+    if File.exists?("#{task_folder}/ppi_nprior.txt")
       resultArray = loadResultFile(task_folder,"ppi_nprior.txt")
       resultArray.collect! {|result| result.chomp }
       results.push Hash["PPI Non-Prior Network",resultArray]
@@ -99,7 +99,7 @@ class PredictionsController < ApplicationController
   
   def loadResultFile(task_folder, file_name)
     resultArray = []
-    f = File.open("#{task_folder}\\#{file_name}") or die "Unable to open file..."
+    f = File.open("#{task_folder}/#{file_name}") or die "Unable to open file..."
     f.each_line do |line|
        resultArray.push line
     end
@@ -109,28 +109,28 @@ class PredictionsController < ApplicationController
   def writeOverlappedResultsFile(task_folder)   
     results = []
     
-    if File.exists?("#{task_folder}\\seman_prior.txt")
+    if File.exists?("#{task_folder}/seman_prior.txt")
       seman_prior = loadResultFile(task_folder,"seman_prior.txt")
       unless seman_prior.empty?
         results.push(seman_prior)
       end
     end
     
-    if File.exists?("#{task_folder}\\seman_nprior.txt")
+    if File.exists?("#{task_folder}/seman_nprior.txt")
       seman_nprior = loadResultFile(task_folder,"seman_nprior.txt")
       unless seman_nprior.empty?
         results.push(seman_nprior)
       end
     end
     
-    if File.exists?("#{task_folder}\\ppi_prior.txt")
+    if File.exists?("#{task_folder}/ppi_prior.txt")
       ppi_prior = loadResultFile(task_folder,"ppi_prior.txt")
       unless ppi_prior.empty?
         results.push(ppi_prior)
       end
     end
         
-    if File.exists?("#{task_folder}\\ppi_nprior.txt")
+    if File.exists?("#{task_folder}/ppi_nprior.txt")
       ppi_nprior = loadResultFile(task_folder,"ppi_nprior.txt")
       unless ppi_nprior.empty?
         results.push(ppi_nprior)
@@ -143,12 +143,12 @@ class PredictionsController < ApplicationController
       overlappedResults = resultArray & overlappedResults
     end
     
-    File.open("#{task_folder}\\overlapped.txt", "w", :type => 'text/html; charset=utf-8'){ |f| f << overlappedResults.join("\n")}
+    File.open("#{task_folder}/overlapped.txt", "w", :type => 'text/html; charset=utf-8'){ |f| f << overlappedResults.join("\n")}
   end
 
   def generateZipFile(task_id)
     task_folder = Rails.root.join('task_temp',task_id)
-    zipfile_name = "#{task_folder}\\#{task_id}.zip"
+    zipfile_name = "#{task_folder}/#{task_id}.zip"
     if File.exists?(zipfile_name)
       File.delete(zipfile_name)
     end
@@ -157,7 +157,7 @@ class PredictionsController < ApplicationController
     Zip::ZipFile.open(zipfile_name, Zip::ZipFile::CREATE) do |zipfile|
       result_files.each do |filename|
         unless filename == "." || filename == ".."
-          zipfile.add(filename, "#{task_folder}\\#{filename}")
+          zipfile.add(filename, "#{task_folder}/#{filename}")
         end
       end
     end

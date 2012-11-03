@@ -18,7 +18,7 @@ class RwrhJob < Struct.new(:omim_id, :top_results, :lambda, :gamma, :eta, :netwo
       end
     end
     
-    completeFile = File.new "#{filepath}\\finish","w"
+    completeFile = File.new "#{filepath}/finish","w"
     completeFile.close
     
   end
