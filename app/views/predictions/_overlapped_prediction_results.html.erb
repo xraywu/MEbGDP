@@ -38,7 +38,7 @@
     <tbody>
       <% @results.each do |result| %>
         <tr class="<%= checkGeneLocation(result, @linkage_interval, @omim_id) %>"><td>
-          <%= link_to result, { :controller => "genes", :action => "search", :symbol => result }, 
+          <%= link_to result, { :controller => "genes", :action => "search", :symbol => result, :omim_id => @omim_id }, 
 	          					:class => "gene-information-colorbox", :title => "Gene Information" %>
         </td></tr>
       <% end %>
