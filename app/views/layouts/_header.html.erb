@@ -1,8 +1,10 @@
+<%= render 'shared/initial_colorbox' %>
+
 <div class="menu">
 <ul>
 	<li><%= link_to "Home", root_path %></li>
-	<li><%= link_to "Help", help_path %></li>
-	<li><%= link_to "About", about_path %></li>
-	<li><%= link_to "Contact", contact_path %></li>
+	<li><%= link_to "Help", help_path, :class => "general-colorbox", :title => "Help" %></li>
+	<li><%= link_to "About", about_path, :class => "general-colorbox", :title => "About" %></li>
+	<li><%= link_to "Contact", contact_path, :class => "general-colorbox", :title => "Contact" %></li>
 </ul>
 </div>

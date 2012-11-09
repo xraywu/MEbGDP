@@ -8,14 +8,17 @@ class PagesController < ApplicationController
   
   def about
     @title = 'About'
+    render :layout => "noLayout"
   end
 
   def contact
     @title = 'Contact'
+    render :layout => "noLayout"
   end
   
   def help
     @title = 'Help'
+    render :layout => "noLayout"
   end
 
 end
