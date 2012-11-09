@@ -1,1 +1,46 @@
-<h1>Help</h1>
+<div class="help-box">
+  <ol>
+     <li>Overview</li>
+     	<p>
+         	MEbGDP is a web-based tool integrating different prediction algorithms and biological evidences for
+         	biologists to investigate on the unknown disease-gene relationship for inheritance diseases. 
+         	The tool starts prediction with one or several computational algorithms 
+         	(currently, it uses a few variants of the Random Walk algorithm) to infer the unknown candidate 
+         	genes for a certain disease and generate prioritized gene lists from the algorithms used. 
+         	The results can be interactively compared and used to narrow down the potential targets. 
+         	MEbGDP then pulls other biological evidences such as linkage-intervals or animal model phenotypes
+         	for users' reference and help enhance their expert judgement.
+         	<br /><br />
+         	See below picture for the system workflow:
+        	<br />
+         	<%= image_tag('MEbGDPWorkflow.png', :size => "500x305", :class => "center") %>
+	 	</p>
+	 <li>Getting Started with Disease Searching</li>
+		<p>
+			To get started, first navigate to the home page of MEbGDP. A search box will show up on the middle of your
+		 	browser. Enter either a disease name or its corresponding OMIM ID as keyword to search for the disease you
+		 	are interested in finding the potential genetic mechanism. You can use the drop down list to autocomplete the
+		    disease name.
+		    <br />
+         	<%= image_tag('help/help-searchbox.png', :size => "430x300", :class => "center") %>
+         	<br />
+         	After entering the keyword, press the "Go!" button on the right, all diseases match your query term
+         	will be retrieved. Currently MEbGDP has covered most of the OMIM inheritance diseases.
+		</p>
+      <li>Start Prediction</li>
+      	<p>
+      		Once your interested disease is found, you can start predicting its candidate genes using MEbGDP. 
+      		Click the "Start Prediction" link on the right to select prediction methods and set parameters. 
+      		<br />
+      		<%= image_tag('help/help-searchresults.png', :size => "500x130", :class => "center") %>
+      		<br />
+      		As soon as you click the link, a parameter panel will be opened. You can select the prediction methods to be used and
+      		set method parameters on the panel. For detailed information of each methods and parameters, move your cursor to the 
+      		corresponding information button. A detailed message will automatically show up.
+      		<br /><br />
+      		<%= image_tag('help/help-parameterpanel.png', :size => "500x440", :class => "center") %>
+      		<br />
+      		Once all set, click the "Start!" button to start the prediction process.
+      	</p>
+  </ol>
+</div>

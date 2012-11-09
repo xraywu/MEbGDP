@@ -47,10 +47,31 @@ header ul li{
 	width: 600px;
 }
 
+.help-box{
+	padding: 10px;
+	font-size: 13px;
+	text-align: justify;
+	width: 550px;
+	height: 600px;
+}
+
+.help-box li{
+	font-weight:bold;
+}
+
+.help-box p{
+	margin-top: 5px;
+}
+
+.center{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .contact-box{
 	font-size: 14px;
 	padding: 10px;
-	
 }
 
 
