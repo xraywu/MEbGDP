@@ -1,11 +1,23 @@
 <div class="help-box">
+  <b id="top">Quick Link</b>
+  <ol class="category">
+  	<li><%=link_to "Overview", "#overview"%></li>
+  	<li><%=link_to "Getting Started with Disease Searching", "#getting-started"%></li>
+  	<li><%=link_to "Start Prediction", "#start-prediction"%></li>
+  	<li><%=link_to "Understanding Prediction Results", "#understanding-results"%></li>
+  	<li><%=link_to "Further Investigating with Biological Evidences", "#further-investigation"%></li>
+  </ol>
+  
   <ol>
-     <li>Overview</li>
+     <li id="overview">Overview</li>
      	<p>
          	MEbGDP is a web-based tool integrating different prediction algorithms and biological evidences for
          	biologists to investigate on the unknown disease-gene relationship for inheritance diseases. 
          	The tool starts prediction with one or several computational algorithms 
-         	(currently, it uses a few variants of the Random Walk algorithm) to infer the unknown candidate 
+         	(currently, it uses a few variants of the 
+         	<%=link_to "Random Walk with Restart algorithm", 
+         			   "http://bioinformatics.oxfordjournals.org/content/26/9/1219.short", 
+         			   :target => "_blank"%>) to infer the unknown candidate 
          	genes for a certain disease and generate prioritized gene lists from the algorithms used. 
          	The results can be interactively compared and used to narrow down the potential targets. 
          	MEbGDP then pulls other biological evidences such as linkage-intervals or animal model phenotypes
@@ -14,8 +26,11 @@
          	See below picture for the system workflow:
         	<br />
          	<%= image_tag('MEbGDPWorkflow.png', :size => "500x305", :class => "center") %>
+         	<br />
+         	<%=link_to "Back to Top", "#top", :class => "link-to-top"%><br />
 	 	</p>
-	 <li>Getting Started with Disease Searching</li>
+	 
+	 <li id="getting-started">Getting Started with Disease Searching</li>
 		<p>
 			To get started, first navigate to the home page of MEbGDP. A search box will show up on the middle of your
 		 	browser. Enter either a disease name or its corresponding OMIM ID as keyword to search for the disease you
@@ -26,8 +41,11 @@
          	<br />
          	After entering the keyword, press the "Go!" button on the right, all diseases match your query term
          	will be retrieved. Currently MEbGDP has covered most of the OMIM inheritance diseases.
+         	<br />
+         	<%=link_to "Back to Top", "#top", :class => "link-to-top"%><br />
 		</p>
-      <li>Start Prediction</li>
+      
+      <li id="start-prediction">Starting Prediction</li>
       	<p>
       		Once your interested disease is found, you can start predicting its candidate genes using MEbGDP. 
       		Click the "Start Prediction" link on the right to select prediction methods and set parameters. 
@@ -41,6 +59,59 @@
       		<%= image_tag('help/help-parameterpanel.png', :size => "500x440", :class => "center") %>
       		<br />
       		Once all set, click the "Start!" button to start the prediction process.
+      		<br />
+         	<%=link_to "Back to Top", "#top", :class => "link-to-top"%><br />
       	</p>
+      	
+      <li id="understanding-results">Understanding Prediction Results</li>
+      	<p>
+      		The prediction process will be automatically started once you have clicked the "Start!" button. It may take minutes
+      		to finish the process and during this process, you will be navigated to a page with "Predicting" message displayed
+      		on the screen. Do not leave or refresh the page, or you will have to start all over again. After the prediction is completed,
+      		the prediction resuts will automatically show up on the page, as the following picture:
+      		<br />
+      		<%= image_tag('help/help-predictionresults.png', :size => "500x390", :class => "center") %>
+      		<br />
+      		The results (prioritized candidate gene lists) for each of the prediction methods you selected will be placed in a column
+      		of the result table. Genes already known to a disease will be displayed in green and genes within a known linkage-interval 
+      		of the disease will be displayed in red. Click on the name of a gene and its detailed information will be displayed.
+      		<br /><br />
+      		<%= image_tag('help/help-geneinformation.png', :size => "500x375", :class => "center") %>
+      		<br />
+      		To compare the results from different methods, you can click on the "Show Overlapped Results" button. The overlapped genes in all
+      		methods used will be displayed and the rest will be hidden. You can switch back and forth between All/Overlapped results. You can 
+      		also download the results file to your local computer by clicking on the "Download Results" button.
+      		<br />
+      		<%= image_tag('help/help-overlappedresults.png', :size => "450x250", :class => "center") %>
+      		<br />
+      		Occasionally, due to the limitation of the prediction method itself, some disease may not be succesfully predicted using certain methods 
+      		(see our article for detailed discussion). Under such circumstances, an error message will be displayed on the top of the results page.
+      		<br />
+      		<%= image_tag('help/help-failedprediction.png', :size => "500x280", :class => "center") %>
+      		<br />
+         	<%=link_to "Back to Top", "#top", :class => "link-to-top"%><br />
+      	</p>
+      	
+      <li id="further-investigation">Further Investigating with Biological Evidences</li>
+      	<p>
+      	  	With the MEbGDP prediction methods, you already have the ability to retrieve a narrow-downed list of genes that may
+      	  	potentially cause the disease. To help further confirm and identify the most "suspecious" ones, MEbGDP provides several biological 
+      	  	evidences for you to reference, including comparison between disease linkage-intervals and gene locations (mentioned above) and 
+      	  	between disease phenotypes and animal model phenotypes. The next paragraph will introduce you how to compare 
+      	  	disease phenotypes and animal model phenotypes on MEbGDP.
+      	  	<br /><br />
+			To compare disease phenotypes with animal model phenotypes relating to alleles of a give gene, first click on the gene symbol name
+			of the prediction results page and open the gene information panel. If the gene has any alleles with animal moddels, it will be 
+			displayed on the bottom of the information table, with the row header "Gene Alleles". Click on the "Human vs. Animal Models" button
+			underneath, the comparison will be started. Currently, MEbGDP is using semantic similarity comparison score from 
+			<%=link_to "PhenomeBrowser", 
+         			   "http://phenomebrowser.net/", 
+         			   :target => "_blank"%> for this purpose.
+         	<br /><br />
+      		<%= image_tag('help/help-allelesrow.png', :size => "500x70", :class => "center") %>
+      		<br />
+         	<%=link_to "Back to Top", "#top", :class => "link-to-top"%><br />	  
+      	</p>
+            
   </ol>
 </div>

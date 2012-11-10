@@ -43,9 +43,11 @@ header ul li{
 .about-box{
 	padding: 10px;
 	font-size: 14px;
-	text-align: left;
+	text-align: justify;
 	width: 600px;
 }
+
+/* Help Page */
 
 .help-box{
 	padding: 10px;
@@ -63,11 +65,23 @@ header ul li{
 	margin-top: 5px;
 }
 
+a.link-to-top {
+	float: right;
+	margin-right: 10px;
+}
+
 .center{
 	display: block;
     margin-left: auto;
     margin-right: auto;
 }
+
+.category {
+	margin-top: 10px;
+	margin-left: 30px;
+}
+
+/* Help Page End */
 
 .contact-box{
 	font-size: 14px;
