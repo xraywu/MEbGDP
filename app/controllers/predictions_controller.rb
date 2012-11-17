@@ -19,7 +19,15 @@ class PredictionsController < ApplicationController
     @parameter = Prediction.new(params[:prediction])
     if @parameter.valid?
        @task_id = Time.new.to_time.to_i
+       task_dir = "task_temp/#{@task_id}"
+       Dir.mkdir(task_dir)
+       writeLogFile(params[:prediction][:omim_id],
+                    params[:prediction][:top_results],params[:prediction][:lambda],
+                    params[:prediction][:gamma],params[:prediction][:eta],
+                    params[:prediction][:network], @task_id)
+                    
        @omim_id = params[:prediction][:omim_id]
+       
        Delayed::Job.enqueue RwrhJob.new(params[:prediction][:omim_id],
                                         params[:prediction][:top_results],params[:prediction][:lambda],
                                         params[:prediction][:gamma],params[:prediction][:eta],
@@ -38,6 +46,7 @@ class PredictionsController < ApplicationController
       @linkage_interval = getLinkageInterval(@omim_id)
       File.delete("#{task_folder}/finish")
       writeOverlappedResultsFile(task_folder)
+      @disease = Disease.find_by_omim_id(@omim_id)
       @results = loadAllResultFiles(task_folder)
     end
   end
@@ -45,6 +54,7 @@ class PredictionsController < ApplicationController
   def showOverlappedResults
     @task_id = params[:task_id]
     @omim_id = params[:omim_id]
+    @disease = Disease.find_by_omim_id(@omim_id)
     @linkage_interval = getLinkageInterval(@omim_id)
     task_folder = Rails.root.join('task_temp',@task_id)
     @results = loadResultFile(task_folder, "overlapped.txt")
@@ -53,6 +63,7 @@ class PredictionsController < ApplicationController
   def showAllResults
     @task_id = params[:task_id]
     @omim_id = params[:omim_id]
+    @disease = Disease.find_by_omim_id(@omim_id)
     @linkage_interval = getLinkageInterval(@omim_id)
     task_folder = Rails.root.join('task_temp',@task_id)
     @results = loadAllResultFiles(task_folder)
@@ -66,6 +77,20 @@ class PredictionsController < ApplicationController
   end
   
   private
+  
+  def writeLogFile(omim_id, top_results, lambda, gamma, eta, network, task_id)
+    task_dir = "task_temp/#{task_id}"
+    logFile_dir = Rails.root.join(task_dir,'log.log')
+    logFile = File.new(logFile_dir,"w")
+    logFile.write("#{Time.new}\n")
+    logFile.write("===========================\n\n")
+    logFile.write("OMIM Entry: #{omim_id}\n")
+    logFile.write("Top Results: #{top_results}\n")
+    logFile.write("Lambda: #{lambda}\n")
+    logFile.write("Gamma: #{gamma}\n")
+    logFile.write("Eta: #{eta}\n")
+    logFile.close
+  end
   
   def loadAllResultFiles(task_folder)
     results = []

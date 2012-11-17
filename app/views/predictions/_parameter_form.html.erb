@@ -9,7 +9,7 @@
 		<td class="head-label" colspan="3">
 			<%= "OMIM Entry: ##{@disease.omim_id}" %>
 			<br />
-			<%= "#{@disease.disease_name}" %>
+			<%= link_to @disease.disease_name, omim_link(@disease.omim_id), :target => "_blank" %>
 		</td>
 	</tr>
 	
