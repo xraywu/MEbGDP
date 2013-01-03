@@ -48,20 +48,20 @@
   			<%= image_tag("infoButton.png", :size => "24x24", :class => "field-infobutton", :data => { :url => tips_net_selection_path }) %>
   		</td>
   		
-		<td class="label"><%= label_tag "semantic_prior", "Semantic Prior " %></td>
+		<td class="label"><%= label_tag "semantic_prior", "HGS-Prior " %></td>
   		<td class="input"><%= f.check_box "network", {:multiple => true, :checked => true}, "getSemanPrior", nil %></td>
   	</tr>
   	
   	<tr>
-  		<td class="label"><%= label_tag "semantic_nprior", "Semantic Non-Prior " %></td>
+  		<td class="label"><%= label_tag "semantic_nprior", "HGS-NonPrior " %></td>
 		<td class="input"><%= f.check_box "network", {:multiple => true, :checked => true}, "getSemanNPrior", nil %></td>
   	</tr>
   	<tr>
-  		<td class="label"><%= label_tag "ppi_prior", "PPI Prior " %></td>
+  		<td class="label"><%= label_tag "ppi_prior", "PPI-Prior " %></td>
 		<td class="input"><%= f.check_box "network", {:multiple => true, :checked => true}, "getPPIPrior", nil %></td>
   	</tr>
   	<tr>
-  		<td class="label"><%= label_tag "ppi_nprior", "PPI Non-Prior " %></td>
+  		<td class="label"><%= label_tag "ppi_nprior", "PPI-NonPrior " %></td>
   		<td class="input"><%= f.check_box "network", {:multiple => true, :checked => true}, "getPPINPrior", nil %></td>
   	</tr>
   	

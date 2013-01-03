@@ -1,2 +1,26 @@
-<%= @gene.mgi_id %>
-<%= @disease.omim_id %>
+<%= render 'shared/initial_colorbox' %>
+
+<h2>Human vs. Animal Models</h2>
+
+<table class="result">
+	<thead>
+		<tr>
+			<th>MGI ID</th>
+			<th>Allele Name</th>
+			<th>Allele Symbol</th>
+			<th>Explore</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @gene.allele.each do |allele| %>
+			<tr>
+				<td><%= allele.allele_mgi %></td>
+				<td><%= allele.allele_name %></td>
+				<td><%= raw(formatAlleleName(allele.allele_symbol)) %></td>
+				<td>
+					<%= link_to "PhenomeNet", phenomeBrowser_link(allele.allele_mgi), :class => "phenome-browser-iframe", :title => "PhenomeBrowser" %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

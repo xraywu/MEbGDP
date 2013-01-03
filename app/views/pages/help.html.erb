@@ -21,7 +21,7 @@
          	genes for a certain disease and generate prioritized gene lists from the algorithms used. 
          	The results can be interactively compared and used to narrow down the potential targets. 
          	MEbGDP then pulls other biological evidences such as linkage-intervals or animal model phenotypes
-         	for users' reference and help enhance their expert judgement.
+         	for users' reference and help enhance their expert judgment.
          	<br /><br />
          	See below picture for the system workflow:
         	<br />
@@ -68,7 +68,7 @@
       		The prediction process will be automatically started once you have clicked the "Start!" button. It may take minutes
       		to finish the process and during this process, you will be navigated to a page with "Predicting" message displayed
       		on the screen. Do not leave or refresh the page, or you will have to start all over again. After the prediction is completed,
-      		the prediction resuts will automatically show up on the page, as the following picture:
+      		the prediction results will automatically show up on the page, as the following picture:
       		<br />
       		<%= image_tag('help/help-predictionresults.png', :size => "500x390", :class => "center") %>
       		<br />
@@ -83,7 +83,7 @@
       		also download the results file to your local computer by clicking on the "Download Results" button.
       		<br />
       		<%= image_tag('help/help-overlappedresults.png', :size => "450x250", :class => "center") %>
-      		Occasionally, due to the limitation of the prediction method itself, some disease may not be succesfully predicted using certain methods 
+      		Occasionally, due to the limitation of the prediction method itself, some disease may not be successfully predicted using certain methods 
       		(see our article for detailed discussion). Under such circumstances, an error message will be displayed on the top of the results page.
       		<br />
       		<%= image_tag('help/help-failedprediction.png', :size => "500x280", :class => "center") %>
@@ -94,20 +94,28 @@
       <li id="further-investigation">Further Investigating with Biological Evidences</li>
       	<p>
       	  	With the MEbGDP prediction methods, you already have the ability to retrieve a narrow-downed list of genes that may
-      	  	potentially cause the disease. To help further confirm and identify the most "suspecious" ones, MEbGDP provides several biological 
+      	  	potentially cause the disease. To help further confirm and identify the most "suspicious" ones, MEbGDP provides several biological 
       	  	evidences for you to reference, including comparison between disease linkage-intervals and gene locations (mentioned above) and 
       	  	between disease phenotypes and animal model phenotypes. The next paragraph will introduce you how to compare 
       	  	disease phenotypes and animal model phenotypes on MEbGDP.
       	  	<br /><br />
 			To compare disease phenotypes with animal model phenotypes relating to alleles of a give gene, first click on the gene symbol name
-			of the prediction results page and open the gene information panel. If the gene has any alleles with animal moddels, it will be 
+			of the prediction results page and open the gene information panel. If the gene has any alleles with animal models, it will be 
 			displayed on the bottom of the information table, with the row header "Gene Alleles". Click on the "Human vs. Animal Models" button
-			underneath, the comparison will be started. Currently, MEbGDP is using semantic similarity comparison score from 
+			underneath, the page will be redirected to the "Human vs. Animal Model" page. Currently, MEbGDP is using semantic similarity comparison from 
 			<%=link_to "PhenomeBrowser", 
          			   "http://phenomebrowser.net/", 
          			   :target => "_blank"%> for this purpose.
          	<br /><br />
       		<%= image_tag('help/help-allelesrow.png', :size => "500x70", :class => "center") %>
+      		<br />
+      		<%= image_tag('help/help-humanvsanimal.png', :size => "500x168", :class => "center") %>
+      		<br />
+      		On the "Human vs. Animal Model" page, all the allels of the selected gene will be listed. For each of the alleles, a user can compare
+      		its phenotype with human diseases and see if the disease interested in has similar features. Click the "PhenomeNet" link on the right of 
+      		the allele, a pop-up window with this information from PhenomeBrowser will be open for the user to explore.
+      		<br /><br />
+      		<%= image_tag('help/help-phenomebrowser.png', :size => "500x320", :class => "center") %>
       		<br />
          	<%=link_to "Back to Top", "#top", :class => "link-to-top"%><br />	  
       	</p>

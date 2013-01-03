@@ -37,5 +37,9 @@ module GenesHelper
   def mgi_allele_link(mgi_id)
     "http://www.informatics.jax.org/searchtool/Search.do?query=" + mgi_id
   end
+  
+  def phenomeBrowser_link(mgi_id)
+    "http://phenomebrowser.net/explore.php?val=" + mgi_id + "#omim"
+  end
 
 end
