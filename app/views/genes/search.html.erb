@@ -94,7 +94,7 @@
 			</th>
 			<td>
 				<% @gene.allele.each do |a| %>
-					<%= link_to raw(formatAlleleName(a.allele_symbol)), mgi_allele_link(a.allele_mgi) %><br />
+					<%= link_to raw(formatAlleleName(a.allele_symbol)), mgi_allele_link(a.allele_mgi), :target => "_blank" %><br />
 				<% end %>
 			</td>
 				
