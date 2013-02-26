@@ -1,4 +1,5 @@
 <% if @prediction.errors.any? %>
+	<!--Generate the error message in HTML for prediction action-->
 	<div id="error_explanation">
 		<h2><%= pluralize(@prediction.errors.count, "error") %>
 			prohited this prediction to be started:</h2>
