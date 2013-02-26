@@ -24,11 +24,11 @@ module GenesHelper
     "http://www.ncbi.nlm.nih.gov/gquery?term=" + accession_number.to_s
   end
   
-  def comma2linebreaker(string)
+  def comma2linebreaker(string) #Translate commas into html line breaker
     string.gsub(/, /) {|s| "<br />" }
   end
   
-  def formatAlleleName(allele)
+  def formatAlleleName(allele)  #Translate allele name into html format
     allele.sub!(/>/) {|s| "</sup>" }
     allele.sub!(/</) {|s| "<sup>" }
     

@@ -1,4 +1,4 @@
-class Association < ActiveRecord::Base
+class Association < ActiveRecord::Base #Corresponding to the association table in mysql, relationship between disease and gene
   belongs_to :gene
   belongs_to :disease
   

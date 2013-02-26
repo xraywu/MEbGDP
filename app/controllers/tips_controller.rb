@@ -1,4 +1,4 @@
-class TipsController < ApplicationController
+class TipsController < ApplicationController  #Used for retrieving info button content
    def rwrh 
     render :layout => "noLayout"
   end

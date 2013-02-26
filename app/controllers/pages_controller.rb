@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   
   def about
     @title = 'About'
-    render :layout => "noLayout"
+    render :layout => "noLayout"  #These pages are in pop window, no need for layout
   end
 
   def contact

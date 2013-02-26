@@ -6,10 +6,10 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: mebgdp_dev
+  database: mebgdp_dev  #Database name here
   pool: 5
-  username: root
-  password: "111111"
+  username: root  #User name here
+  password: "111111"  #User password here
   host: 127.0.0.1
   port: 3306
   
