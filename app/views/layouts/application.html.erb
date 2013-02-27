@@ -2,15 +2,15 @@
 <html>
 <head>
   <title>
-  	<% if @title.blank?%>	
+  	<% if @title.blank?%>	<!-- HTML Title -->
   		MEbGDP
   	<% else %>
   		MEbGDP | <%= @title %>
   	<% end %>
   </title>
   <%= favicon_link_tag 'favicon.ico' %>
-  <%= render 'layouts/script' %>
-  <%= render 'layouts/stylesheet' %>
+  <%= render 'layouts/script' %>	<!-- Necessary scripts -->
+  <%= render 'layouts/stylesheet' %> <!-- Necessary styles -->
   <%= csrf_meta_tags %>
 </head>
 <body>

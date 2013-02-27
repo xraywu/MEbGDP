@@ -7,11 +7,12 @@
 											:class => "field-infobutton", 
 											:data => { :url => tips_rwrh_path }),
 											"http://bioinformatics.oxfordjournals.org/content/26/9/1219.short",
-											:target => "_blank" %>
+											:target => "_blank" 
+											#The path is constructd automatically %>
 </h3>
 
 <%= render 'parameter_form'%>
 
-<%= render 'shared/enableTipScript'%>
+<%= render 'shared/enableTipScript'%>	<!--The page has info button, requiring qtip-->
 
 </div>

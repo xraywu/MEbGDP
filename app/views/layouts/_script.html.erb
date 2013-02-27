@@ -1,7 +1,15 @@
 <%= javascript_include_tag "application" %>
+
+<!-- JQuery and jquery dependent scripts -->
 <%= javascript_include_tag 'jquery-1.8.0.min.js', 'jquery-ui-1.8.24.custom.min.js', 'autocomplete-rails.js', 'rails.js'  %>
+
+<!-- Qtip script, for info button -->
 <%= javascript_include_tag "jquery.qtip.js" %>
+
+<!-- ClientSide Validation -->
 <%= javascript_include_tag "rails.validations.js" %>
+
+<!-- Colorbox for pop window -->
 <%= javascript_include_tag "jquery.colorbox.js"%>
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
