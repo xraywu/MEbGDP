@@ -1,3 +1,5 @@
+<!-- This section loads the length of result lists from different method and decide the length of the result table-->
+<!-- A method may not have a result or have less results then the others, check in the if statement -->
 <% 
 max_result_num = 0
 array_nums = 0
@@ -17,6 +19,7 @@ failed_prediction_messages = []
 end
 %>
 
+<!-- Colorbox initialed here, enable pop window -->
 <%= render 'shared/initial_colorbox' %>
 
 <% unless failed_prediction_messages.empty? %>
@@ -58,7 +61,10 @@ end
 	    <thead><tr><th><%= network %></th></tr></thead>
 	    <tbody>
 	      <% resultArray.each do |result| %>
+	      
+	        <!-- Check the gene's location see if it requires special display -->
 	        <tr class="<%= checkGeneLocation(result, @linkage_interval, @omim_id) %>"><td>
+	        	
 	          <%= link_to result, { :controller => "genes", :action => "search", :symbol => result, :omim_id => @omim_id }, 
 	          						:class => "gene-information-colorbox", :title => "Gene Information" %>
 	        </td></tr>
