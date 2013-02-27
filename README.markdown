@@ -1,7 +1,7 @@
 == MEbGDP User Document
 
 
-*About*
+**About**
 
 MEbGDP (Multi-evidence based Gene-Disease Relationship Prediction) 
 is a web-based tool allowing biologists to pull evidence from several 
@@ -15,7 +15,7 @@ MEbGDP is developped at Division of Health Science Informatics,
 Jonhs Hopkins University School of Medicine by Xiaoli Wu, Hans Bjornsson and Harold Lehmann.
 
 
-*Installation and Configuration*
+**Installation and Configuration**
 
 1. Install Ruby 1.9.3 and Rails 3.2.8, MySQL 5.5, Matlab
 2. Clone this project
