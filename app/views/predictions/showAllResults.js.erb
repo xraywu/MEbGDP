@@ -1,9 +1,4 @@
 <% unless @results.nil? %>
-  $("#prediction-results").empty();
-  $("#prediction-results").attr( "data-result", "true" );
-  $("#prediction-results").append("<h2>Prediction Results For</h2>");
-  $("#prediction-results").append(
-  	"<h4 style=\"margin-top: -15px;\"><a href=\"<%= "http://www.omim.org/entry/#{@disease.omim_id}" %>\" target=\"_blank\"><%= @disease.disease_name %></a></h4>");
-  $("#prediction-results").append("<%=raw escape_javascript(render 'prediction_results', :collection => @results) %>");
-<!-- Load results page prediction_results.html.erb using AJAX and append on the corresponding HTML area -->
+	$("#overlapped-results").hide();
+	$("#all-results").show();
 <% end %>

@@ -49,6 +49,7 @@ class PredictionsController < ApplicationController
       writeOverlappedResultsFile(task_folder)
       @disease = Disease.find_by_omim_id(@omim_id)
       @results = loadAllResultFiles(task_folder)  #Load result files
+      @overlapped_results = loadResultFile(task_folder, "overlapped.txt")
     end
   end
   
@@ -58,7 +59,7 @@ class PredictionsController < ApplicationController
     @disease = Disease.find_by_omim_id(@omim_id)
     @linkage_interval = getLinkageInterval(@omim_id)
     task_folder = Rails.root.join('task_temp',@task_id)
-    @results = loadResultFile(task_folder, "overlapped.txt")
+    @overlapped_results = loadResultFile(task_folder, "overlapped.txt")
   end
   
   def showAllResults  #Load all results from the task file (for displaying back from overalpped results)

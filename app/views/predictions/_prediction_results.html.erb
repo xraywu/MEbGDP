@@ -32,9 +32,20 @@ end
   </div>
 <% end %>
 
-<% unless array_nums <= 1 %>
+<% if array_nums > 1 %>
   <div class="button-area">
 	<%= submit_tag "Show Overlapped Results", :onclick => "showOverlappedResults()", :class => "go-button smaller"%>
+	<%= form_tag( {:controller => 'predictions', :action => 'downloadResults'}, :class => "inline-display", :method => "get" ) do %>
+  		<%= text_field_tag "task_id", @task_id, :type => "hidden" %>
+  		<%= submit_tag "Download Results", :class => "go-button smaller"%>
+  	<% end %>
+  	<div class="legend">
+  		<div class="green-square">Gene Known to the Disease</div>
+  		<div class="red-square">Gene on a Known Linkage Interval</div>
+  	</div>
+  </div>
+<% elsif array_nums == 1 %>
+	<div class="button-area">
 	<%= form_tag( {:controller => 'predictions', :action => 'downloadResults'}, :class => "inline-display", :method => "get" ) do %>
   		<%= text_field_tag "task_id", @task_id, :type => "hidden" %>
   		<%= submit_tag "Download Results", :class => "go-button smaller"%>

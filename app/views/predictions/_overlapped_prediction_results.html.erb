@@ -1,8 +1,8 @@
 <!-- Load the result array and organize it into html -->
 
-<% if @results.empty? %> <!-- No prediction result -->
+<% if @overlapped_results.empty? %> <!-- No prediction result -->
   <div class="vmiddle-major">
-    <h4>No Overlapped Result Predicted on All Networks!</h4>	
+    <h3>No Overlapped Result Predicted on All Networks!</h3>	
     <div class="button-area">
       <%= submit_tag "Show All Results", :onclick => "showAllResults()", :class => "go-button smaller"%>
       <%= form_tag( {:controller => 'predictions', :action => 'downloadResults'}, :class => "inline-display", :method => "get" ) do %>
@@ -29,7 +29,7 @@
   <table class="prediction-rank-table">
     <thead><tr><th>#</th></tr></thead>
     <tbody>
-      <% for row_num in 1..@results.length %>	<!-- Load result length and add col num -->
+      <% for row_num in 1..@overlapped_results.length %>	<!-- Load result length and add col num -->
         <tr><td><%= row_num %></td></tr>
       <% end %>
     </tbody>
@@ -38,7 +38,7 @@
   <table class="prediction-result-table">
     <thead><tr><th>Overlapped Gene</th></tr></thead>	<!-- Format overlapped results into html code -->
     <tbody>
-      <% @results.each do |result| %>
+      <% @overlapped_results.each do |result| %>
         <tr class="<%= checkGeneLocation(result, @linkage_interval, @omim_id) %>"><td>
           <%= link_to result, { :controller => "genes", :action => "search", :symbol => result, :omim_id => @omim_id }, 
 	          					:class => "gene-information-colorbox", :title => "Gene Information" %>

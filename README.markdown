@@ -23,6 +23,7 @@ Jonhs Hopkins University School of Medicine by Xiaoli Wu, Hans Bjornsson and Har
 4. Create the database and config your database information in config/database.yml
 5. Import data into your db using db/mebgdp.sql
 6. Register your own OMIM API Key at http://www.omim.org/api, configure it in controllers/prediction_controller.rb
-7. Configure your own server, recommend using Passenger with Apache (https://www.phusionpassenger.com/)
-8. If you only need the Matlab scripts and data, it is located in tasks/rwrh/
-9. Enjoy!
+7. Add app/task/rwrh to your Matlab Library Path
+8. Configure your own server, recommend using Passenger with Apache (https://www.phusionpassenger.com/)
+9. If you only need the Matlab scripts and data, it is located in tasks/rwrh/
+10. Enjoy!
