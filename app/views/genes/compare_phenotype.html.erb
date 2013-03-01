@@ -2,6 +2,14 @@
 
 <h2>Human vs. Animal Models</h2>
 
+<h4>Check the rank of 
+	<a href=\"<%= "http://www.omim.org/entry/#{@disease.omim_id}" %>\" target=\"_blank\">
+		OMIM:<%= @disease.omim_id %> 
+		<%= @disease.disease_name %>
+	</a> 
+	comparing to each of the animal models in PhenomeNet
+</h4>
+
 <table class="result">
 	<thead>
 		<tr>
