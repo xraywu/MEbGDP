@@ -27,7 +27,6 @@ class PredictionsController < ApplicationController
                     params[:prediction][:network], @task_id)
                     
        @omim_id = params[:prediction][:omim_id]
-       
        #Put the prediction task into the task queue
        Delayed::Job.enqueue RwrhJob.new(params[:prediction][:omim_id],
                                         params[:prediction][:top_results],params[:prediction][:lambda],
@@ -53,22 +52,12 @@ class PredictionsController < ApplicationController
     end
   end
   
-  def showOverlappedResults #Load overlapped result from all result files
-    @task_id = params[:task_id]
-    @omim_id = params[:omim_id]
-    @disease = Disease.find_by_omim_id(@omim_id)
-    @linkage_interval = getLinkageInterval(@omim_id)
-    task_folder = Rails.root.join('task_temp',@task_id)
-    @overlapped_results = loadResultFile(task_folder, "overlapped.txt")
+  def showOverlappedResults #The action is only used to render showOverlapped Results script, need no action
+    
   end
   
   def showAllResults  #Load all results from the task file (for displaying back from overalpped results)
-    @task_id = params[:task_id]
-    @omim_id = params[:omim_id]
-    @disease = Disease.find_by_omim_id(@omim_id)
-    @linkage_interval = getLinkageInterval(@omim_id)
-    task_folder = Rails.root.join('task_temp',@task_id)
-    @results = loadAllResultFiles(task_folder)
+   
   end
   
   def downloadResults #Download files to user browser
