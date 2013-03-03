@@ -34,7 +34,7 @@ class PredictionsController < ApplicationController
                                         params[:prediction][:network], @task_id)
     else
       @disease = Disease.find_by_omim_id(params[:prediction][:omim_id])
-      render :action => 'parameter'
+      redirect_to :controller => 'diseases', :action => 'search', :keyword => params[:prediction][:omim_id]
     end
   end
   

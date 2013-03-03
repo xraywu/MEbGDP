@@ -11,7 +11,7 @@ class Prediction
   validates :lambda, :presence => true, :numericality => { :greater_than => 0, :less_than => 1 }
   validates :eta, :presence => true, :numericality => { :greater_than => 0, :less_than => 1 }
   validates :gamma, :presence => true, :numericality => { :greater_than => 0, :less_than => 1 }
-  validate :validate_networks
+  validate :validate_networks #Custom validator for prediction method
   
   def initialize(attributes = {})
     attributes.each do |name, value|
@@ -24,11 +24,11 @@ class Prediction
   end
   
   def validate_networks
-    @allowed_network = ["getSemanPrior","getSemanNPrior","getPPIPrior","getPPINPrior"]
-    if network.nil?
+    @allowed_network = ["getSemanPrior","getSemanNPrior","getPPIPrior","getPPINPrior"]  #Allowed keywords
+    if network.nil? # At least one method should be selected
       errors.add(:network, "Select at least 1 network!")
     else
-      network.each do |network_name|
+      network.each do |network_name|  #Check if all submitted method name is valid
         unless @allowed_network.include?(network_name)
           errors.add(:network, "Please use valid method name!")
           break
