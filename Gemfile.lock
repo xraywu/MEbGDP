@@ -32,6 +32,7 @@ GEM
     builder (3.0.3)
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
+    chronic (0.9.1)
     client_side_validations (3.2.0)
     daemons (1.1.9)
     delayed_job (3.0.3)
@@ -98,6 +99,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.33)
+    whenever (0.8.2)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
     will_paginate (3.0.3)
 
 PLATFORMS
@@ -115,4 +119,5 @@ DEPENDENCIES
   rails (= 3.2.8)
   rails3-jquery-autocomplete
   rubyzip
+  whenever
   will_paginate

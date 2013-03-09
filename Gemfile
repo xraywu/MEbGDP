@@ -14,6 +14,7 @@ gem 'daemons'
 gem 'childprocess'
 gem 'rubyzip'
 gem 'nokogiri'
+gem 'whenever', :require => false
 
 # Gems used only for assets and not required
 # in production environments by default.
