@@ -18,6 +18,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, :at => '1:00 am' do
+every 1.day, :at => '1am' do
 	command "find #{path}/task_temp -mtime +1 -exec rm -r {} \\;"
 end
